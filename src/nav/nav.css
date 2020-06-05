@@ -1,0 +1,32 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  text-align: center;
+  background-color: rgb(244, 225, 159);
+  border-bottom: rgb(45, 45, 47) 1px solid;
+  color: 1px, solid, rgb(88, 136, 156);
+}
+
+.icon {
+  float: left;
+  margin-left: 2px;
+}
+.log {
+  float: right;
+  color: 1px, solid, rgb(88, 136, 156);
+  border: rgb(1, 82, 112) 3px solid;
+  margin: 3px;
+  margin-top: 9px;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-radius: 8px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  margin: 0px;
+}

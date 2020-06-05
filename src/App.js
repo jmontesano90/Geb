@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Nav from './nav/nav';
+import SplashPage from './splashpage/splashPage';
+import { Route } from 'react-router-dom';
+import gridGenerator from './gridGenerator/gridGenerator';
+import homePage from './home/home';
+import myGrids from './myGrids/myGrids';
+import transectPage from './transectPage/transectPage';
+import GridContext from './GridContext';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      grids: [],
+    };
+  }
+  render() {
+    const value = {
+      grids: this.state.grids,
+    };
+    return (
+      <GridContext.Provider value={value}>
+        <div className='App'>
+          <Nav></Nav>
+          <Route exact path='/' component={SplashPage} />
+          <Route exact path='/newGrid' component={gridGenerator} />
+          <Route exact path='/home' component={homePage} />
+          <Route exact path='/myGrids' component={myGrids} />
+          <Route exact path='/transectPage' component={transectPage} />
+        </div>
+      </GridContext.Provider>
+    );
+  }
 }
 
 export default App;

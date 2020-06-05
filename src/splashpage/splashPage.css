@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+footer {
+  padding: 1% 0;
+  background-color: #aaa;
+}
+
+header {
+  padding: 15px 15px;
+}
+
+section {
+  min-height: 200px;
+  padding: 5px 15px 20px 15px;
+  background-color: rgb(246, 240, 226);
+  color: rgb(45, 45, 47);
+  border: 2px solid rgb(1, 82, 112);
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+p + p {
+  margin-top: 15px;
+}
+
+.grid {
+  width: 288px;
+  height: 288px;
+}
