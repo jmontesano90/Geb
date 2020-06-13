@@ -20,7 +20,7 @@ class Home extends Component {
               My Grids
             </Link>
             <Link
-              to='/transectPage'
+              to='/newGrid'
               style={{ textDecoration: 'none' }}
               className='buttons'
             >
@@ -33,6 +33,7 @@ class Home extends Component {
             <h3>Number of sites sampled</h3>
             <p>43</p>
             <h3>Last sampling event</h3>
+            <Grid></Grid>
             <p> load last samlping grid with date and comment</p>
           </section>
         </main>
