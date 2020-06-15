@@ -3,16 +3,7 @@ import * as d3 from 'd3';
 import './grid.css';
 
 class Grid extends Component {
-  componentDidMount() {
-    // let data = {
-    //   x: [5, 2],
-    //   y: [7, 1, 4],
-    //   xPartial: [4],
-    //   yPartial: [1],
-    //   direction: [1],
-    //   partialTransectLength: 50,
-    // };
-
+  render() {
     let data = this.props.data;
 
     // data.x = parseInt(data.x);
@@ -32,7 +23,8 @@ class Grid extends Component {
     //   test.partialTransectLength.value
     // );
     // test.minimum.value = parseInt(test.minimum.value);
-    console.log(this.props);
+
+    console.log(data);
     console.log(test);
 
     let bigV;
@@ -41,111 +33,131 @@ class Grid extends Component {
     } else {
       bigV = test.y.value;
     }
-
     let multFactor = 300 / bigV;
-    //scales any grid up to 300px
-    test.x.value = test.x.value * multFactor;
-    test.y.value = test.y.value * multFactor;
+    let alteredX;
+    let alteredY;
+    // console.log('multFactor outside loop: ' + multFactor);
 
-    for (let i = 0; i < data.x.length; i++) {
-      data.x[i] = data.x[i] * multFactor;
-    }
-    for (let i = 0; i < data.y.length; i++) {
-      data.y[i] = data.y[i] * multFactor;
-    }
-    for (let i = 0; i < data.xPartial.length; i++) {
-      data.xPartial[i] = data.xPartial[i] * multFactor;
-    }
-    for (let i = 0; i < data.yPartial.length; i++) {
-      data.yPartial[i] = data.yPartial[i] * multFactor;
-    }
-    data.partialTransectLength = data.partialTransectLength * multFactor;
+    if (!test.x.value || !test.y.value) {
+      console.log('Must wait for both numbers');
+    } else {
+      // console.log('multFactor inside loop: ' + multFactor);
+      // //scales any grid up to 300px
+      // console.log('Test x value before transformation: ' + test.x.value);
+      // console.log('Test y value before transformation: ' + test.y.value);
+      alteredX = test.x.value * multFactor;
+      alteredY = test.y.value * multFactor;
+      // console.log('Test x value after transformation: ' + test.x.value);
+      // console.log('Test y value after transformation: ' + test.y.value);
+      // console.log('Altered x value after transformation: ' + alteredX);
+      // console.log('Altered y value after transformation: ' + alteredY);
 
-    let svg = d3
-      .select('svg')
-      .attr('height', test.y.value)
-      .attr('width', test.x.value);
+      // console.log(data.x);
 
-    svg
-      .selectAll('svg')
-      .data(data.y)
-      .enter()
-      .append('rect')
-      .attr('width', test.x.value)
-      .attr('height', 4)
-      .attr('y', (d, i) => d)
-      .attr('fill', 'rgb(1,82,112)');
+      for (let i = 0; i < data.x.length; i++) {
+        data.x[i] = data.x[i] * multFactor;
+      }
+      for (let i = 0; i < data.y.length; i++) {
+        data.y[i] = data.y[i] * multFactor;
+      }
+      for (let i = 0; i < data.xPartial.length; i++) {
+        data.xPartial[i] = data.xPartial[i] * multFactor;
+      }
+      for (let i = 0; i < data.yPartial.length; i++) {
+        data.yPartial[i] = data.yPartial[i] * multFactor;
+      }
+      data.partialTransectLength = data.partialTransectLength * multFactor;
+      // console.log('X data after transformation: ' + data.x);
+      // console.log('Y data after transformation: ' + data.y);
 
-    svg
-      .selectAll('svg')
-      .data(data.x)
-      .enter()
-      .append('rect')
-      .attr('height', test.y.value)
-      .attr('width', 4)
-      .attr('x', (d, i) => d)
-      .attr('fill', 'rgb(197,84,40)');
+      let svg = d3
+        .select('svg')
+        .attr('height', alteredY)
+        .attr('width', alteredX);
 
-    svg
-      .selectAll('svg')
-      .data(data.xPartial)
-      .enter()
-      .append('rect')
-      .attr('height', (d, i) => {
-        if (data.direction[i] <= 1) {
-          if (data.direction[i] === 0) {
-            return data.partialTransectLength;
+      svg
+        .selectAll('svg')
+        .data(data.y)
+        .enter()
+        .append('rect')
+        .attr('width', alteredX)
+        .attr('height', 4)
+        .attr('y', (d, i) => d)
+        .attr('fill', 'rgb(1,82,112)');
+
+      svg
+        .selectAll('svg')
+        .data(data.x)
+        .enter()
+        .append('rect')
+        .attr('height', alteredY)
+        .attr('width', 4)
+        .attr('x', (d, i) => d)
+        .attr('fill', 'rgb(197,84,40)');
+
+      svg
+        .selectAll('svg')
+        .data(data.xPartial)
+        .enter()
+        .append('rect')
+        .attr('height', (d, i) => {
+          if (data.direction[i] <= 1) {
+            if (data.direction[i] === 0) {
+              return data.partialTransectLength;
+            } else {
+              data.yPartial[i] = data.yPartial[i] - data.partialTransectLength;
+              return data.partialTransectLength;
+            }
           } else {
-            data.yPartial[i] = data.yPartial[i] - data.partialTransectLength;
-            return data.partialTransectLength;
+            return 4;
           }
-        } else {
-          return 4;
-        }
-      })
-      .attr('width', (d, i) => {
-        if (data.direction[i] > 1) {
-          if (data.direction[i] === 2) {
-            return data.partialTransectLength;
-          } else {
-            data.xPartial[i] = data.xPartial[i] - data.partialTransectLength;
-            return data.partialTransectLength;
-          }
-        } else return 4;
-      })
-      .attr('x', (d, i) => data.xPartial[i])
-      .attr('y', (d, i) => data.yPartial[i])
-      .attr('fill', 'rgb(109,88,59)');
+        })
+        .attr('width', (d, i) => {
+          if (data.direction[i] > 1) {
+            if (data.direction[i] === 2) {
+              return data.partialTransectLength;
+            } else {
+              data.xPartial[i] = data.xPartial[i] - data.partialTransectLength;
+              return data.partialTransectLength;
+            }
+          } else return 4;
+        })
+        .attr('x', (d, i) => data.xPartial[i])
+        .attr('y', (d, i) => data.yPartial[i])
+        .attr('fill', 'rgb(109,88,59)');
 
-    svg
-      .selectAll('svg')
-      .data(data.y)
-      .enter()
-      .append('text')
-      .attr('y', (d, i) => d - 4)
-      .text((d) => d / multFactor);
+      svg
+        .selectAll('svg')
+        .data(data.y)
+        .enter()
+        .append('text')
+        .attr('y', (d, i) => d - 4)
+        .text((d) => d / multFactor);
 
-    svg
-      .selectAll('svg')
-      .data(data.x)
-      .enter()
-      .append('text')
-      .attr('x', (d) => d + 5)
-      .attr('y', test.y.value - 4)
-      .text((d) => d / multFactor);
+      svg
+        .selectAll('svg')
+        .data(data.x)
+        .enter()
+        .append('text')
+        .attr('x', (d) => d + 4)
+        .attr('y', alteredY - 10)
+        .text((d) => d / multFactor);
 
-    svg
-      .selectAll('svg')
-      .data(data.xPartial)
-      .enter()
-      .append('text')
-      .attr('x', (d) => d + 4)
-      .attr('y', (d, i) => data.yPartial[i] - 4)
-      .text((d, i) => d / multFactor + ', ' + data.yPartial[i] / multFactor);
-  }
+      svg
+        .selectAll('svg')
+        .data(data.xPartial)
+        .enter()
+        .append('text')
+        .attr('x', (d) => d + 4)
+        .attr('y', (d, i) => data.yPartial[i] - 4)
+        .text((d, i) => d / multFactor + ', ' + data.yPartial[i] / multFactor);
+    }
 
-  render() {
-    return <svg></svg>;
+    return (
+      <div id='svgAppender'>
+        <svg></svg>
+      </div>
+    );
   }
 }
 

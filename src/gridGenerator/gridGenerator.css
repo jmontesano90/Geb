@@ -3,3 +3,16 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+}
+
+.prompt {
+  border: 1px solid black;
+}

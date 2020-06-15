@@ -8,6 +8,7 @@ import homePage from './home/home';
 import myGrids from './myGrids/myGrids';
 import transectPage from './transectPage/transectPage';
 import GridContext from './GridContext';
+import gridUi from './gridUi/gridUi';
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends Component {
         <div className='App'>
           <Nav></Nav>
           <Route exact path='/' component={SplashPage} />
-          <Route exact path='/newGrid' component={gridGenerator} />
+          <Route exact path='/newGrid' component={gridUi} />
           <Route exact path='/home' component={homePage} />
           <Route exact path='/myGrids' component={myGrids} />
           <Route exact path='/transectPage' component={transectPage} />

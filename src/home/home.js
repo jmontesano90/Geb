@@ -33,8 +33,8 @@ class Home extends Component {
             <h3>Number of sites sampled</h3>
             <p>43</p>
             <h3>Last sampling event</h3>
-            <Grid></Grid>
-            <p> load last samlping grid with date and comment</p>
+            {/* <Grid></Grid> */}
+            <p> load last sampling grid with date and comment</p>
           </section>
         </main>
         <footer role='content-info'>Footer</footer>

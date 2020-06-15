@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './splashPage.css';
+import RegistrationForm from '../registrationForm/registrationForm';
 
 class SplashPage extends Component {
   render() {
@@ -17,18 +18,6 @@ class SplashPage extends Component {
             <h1>Geb</h1>
             <h2>Grid Randomizer</h2>
           </header>
-          <section>
-            <header>
-              <h3>Generate custom transects on the fly</h3>
-            </header>
-
-            <p>
-              Whether you're a ecologist sampling vegetation, or a biologist
-              sampling mosquito larvae you know the value of transect based
-              sampling. Geb is a tool designed to generate transect lines to
-              survey inside a grid of dimensions of you're choosing.{' '}
-            </p>
-          </section>
 
           <section>
             <h3>Truly randomize your sampling</h3>
@@ -43,6 +32,19 @@ class SplashPage extends Component {
               vegetation on!
             </p>
           </section>
+
+          <section>
+            <header>
+              <h3>Generate custom transects on the fly</h3>
+            </header>
+            <p>
+              Whether you're a ecologist sampling vegetation, or a biologist
+              sampling mosquito larvae you know the value of transect based
+              sampling. Geb is a tool designed to generate transect lines to
+              survey inside a grid of dimensions of you're choosing.{' '}
+            </p>
+          </section>
+
           <section>
             <header>
               <h3>Save Custom Transects</h3>
@@ -70,38 +72,10 @@ class SplashPage extends Component {
             <header>
               <h3>Start Sampling Now</h3>
             </header>
-            <form className='signup-form'>
-              <div>
-                <label htmlFor='first-name'>First name</label>
-                <input
-                  placeholder='First Name'
-                  type='text'
-                  name='first-name'
-                  id='first-name'
-                />
-              </div>
-              <div>
-                <label htmlFor='last-name'>Last name</label>
-                <input
-                  type='text'
-                  name='last-name'
-                  id='last-name'
-                  placeholder='Last Name'
-                />
-              </div>
-              <div>
-                <label htmlFor='username'>Email</label>
-                <input type='text' name='username' id='username' />
-              </div>
-              <div>
-                <label htmlFor='password'>Password</label>
-                <input type='password' name='password' id='password' />
-              </div>
-              <button type='submit'>Sign Up</button>
-            </form>
-            <h3>Continue without signing up</h3>
+            <RegistrationForm id='register'></RegistrationForm>
           </section>
         </main>
+
         <footer role='content-info'>Footer</footer>
       </section>
     );
