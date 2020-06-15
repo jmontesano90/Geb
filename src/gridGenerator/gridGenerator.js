@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './gridGenerator.css';
-import Chart from 'chart.js';
-import transect from '../transect';
-import { render } from '@testing-library/react';
-import Grid from '../grid/grid';
-import transectGeneration from '../transect';
+// import Chart from 'chart.js';
+// import transect from '../transect';
+// import { render } from '@testing-library/react';
+// import Grid from '../grid/grid';
+// import transectGeneration from '../transect';
 import GridContext from '../GridContext';
+import ValidationError from './ValidationError';
+import { parse } from 'date-fns';
 
 class gridGenerator extends Component {
   constructor(props) {
@@ -33,7 +35,7 @@ class gridGenerator extends Component {
           touched: false,
         },
         partialTransectLength: {
-          value: 5,
+          value: 1,
           touched: false,
         },
         minimum: {
@@ -71,6 +73,113 @@ class gridGenerator extends Component {
       },
       () => {}
     );
+  }
+
+  transectLengthValidation() {
+    let validation = true;
+    if (
+      parseInt(this.state.gridInformation.x.value) <
+      parseInt(this.state.gridInformation.partialTransectLength.value)
+    ) {
+      validation = false;
+    } else if (
+      parseInt(this.state.gridInformation.y.value) <
+      parseInt(this.state.gridInformation.partialTransectLength.value)
+    ) {
+      validation = false;
+    } else {
+      validation = true;
+    }
+    if (validation === false) {
+      return 'Partial transect cannot be longer than x or y';
+    }
+  }
+
+  minimumValidation() {
+    let minTran =
+      parseInt(this.state.gridInformation.minimum.value) *
+      parseInt(this.state.gridInformation.transectCount.value);
+    let xyTotal =
+      parseInt(this.state.gridInformation.x.value) +
+      parseInt(this.state.gridInformation.y.value);
+    if (minTran > xyTotal / 1.5) {
+      return 'That minimum distance is too long given your other parameters';
+    }
+  }
+
+  xyValidation() {
+    let validation;
+    if (parseInt(this.state.gridInformation.x.value) > 300) {
+      validation = false;
+    }
+    if (parseInt(this.state.gridInformation.y.value) > 300) {
+      validation = false;
+    }
+    if (validation === false) {
+      return 'Neither x nor y may be larger than 300';
+    }
+  }
+
+  fullTransectValidation() {
+    if (parseInt(this.state.gridInformation.transectCount.value) > 10) {
+      return 'Cannot have more than 10 transects';
+    }
+  }
+
+  partialTransectValidation() {
+    if (parseInt(this.state.gridInformation.partialTransectCount.value) > 10) {
+      return 'Cannot have more than 10 partial transects';
+    }
+  }
+
+  validateNumberInputs() {
+    let onlyNumbers = true;
+    if (isNaN(this.state.gridInformation.x.value)) {
+      onlyNumbers = false;
+    }
+    if (isNaN(this.state.gridInformation.y.value)) {
+      onlyNumbers = false;
+    }
+    if (isNaN(this.state.gridInformation.transectCount.value)) {
+      onlyNumbers = false;
+    }
+    if (isNaN(this.state.gridInformation.partialTransectCount.value)) {
+      onlyNumbers = false;
+    }
+    if (isNaN(this.state.gridInformation.partialTransectLength.value)) {
+      onlyNumbers = false;
+    }
+    if (isNaN(this.state.gridInformation.minimum.value)) {
+      onlyNumbers = false;
+    }
+    if (onlyNumbers === false) {
+      return 'All inputs must be numbers';
+    }
+  }
+
+  validatePositiveInputs() {
+    let positiveNumbers = true;
+    if (parseInt(this.state.gridInformation.x.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (parseInt(this.state.gridInformation.y.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (parseInt(this.state.gridInformation.transectCount.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (parseInt(this.state.gridInformation.partialTransectCount.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (parseInt(this.state.gridInformation.partialTransectLength.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (parseInt(this.state.gridInformation.minimum.value) < 0) {
+      positiveNumbers = false;
+    }
+    if (positiveNumbers === false) {
+      return 'All inputs must be positive';
+    }
   }
 
   handleSubmit(event) {
@@ -127,8 +236,10 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <ValidationError message={this.xyValidation()} />
             <div>
               <label htmlFor='Transect'>Full Transect count</label>
+              <ValidationError message={this.fullTransectValidation()} />
               <input
                 type='number'
                 name='transectCount'
@@ -139,6 +250,7 @@ class gridGenerator extends Component {
             </div>
             <div>
               <label htmlFor='partial-transect'>Partial Transect Count</label>
+              <ValidationError message={this.partialTransectValidation()} />
               <input
                 type='number'
                 name='partialTransectCount'
@@ -151,6 +263,7 @@ class gridGenerator extends Component {
               <label htmlFor='partial-transect-length'>
                 Partial Transect Length
               </label>
+              <ValidationError message={this.transectLengthValidation()} />
               <input
                 type='number'
                 name='partialTransectLength'
@@ -163,6 +276,7 @@ class gridGenerator extends Component {
               <label htmlFor='minimum'>
                 Minimum distance between transects
               </label>
+              <ValidationError message={this.minimumValidation()} />
               <input
                 type='number'
                 name='minimum'
@@ -171,7 +285,21 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
-            <button type='submit' onClick={this.forceUpdateHandler}>
+            <ValidationError message={this.validateNumberInputs()} />
+            <ValidationError message={this.validatePositiveInputs()} />
+            <button
+              type='submit'
+              onClick={this.forceUpdateHandler}
+              disabled={
+                this.validatePositiveInputs() ||
+                this.validateNumberInputs() ||
+                this.minimumValidation() ||
+                this.transectLengthValidation() ||
+                this.partialTransectValidation() ||
+                this.fullTransectValidation() ||
+                this.xyValidation()
+              }
+            >
               Generate Custom Transect
             </button>
           </section>
