@@ -17,6 +17,10 @@ class App extends Component {
       templates: [],
       data: [],
     };
+    this.handleAddTemplate = this.handleAddTemplate.bind(this);
+    this.handleAddData = this.handleAddData.bind(this);
+    this.handleDeleteData = this.handleDeleteData.bind(this);
+    this.handleDeleteTemplate = this.handleDeleteTemplate.bind(this);
   }
 
   handleAddTemplate = (template) => {
