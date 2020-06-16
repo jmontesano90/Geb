@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import './grid.css';
+import { sv } from 'date-fns/locale';
 
 class Grid extends Component {
   render() {
@@ -24,8 +25,8 @@ class Grid extends Component {
     // );
     // test.minimum.value = parseInt(test.minimum.value);
 
-    console.log(data);
-    console.log(test);
+    // console.log(data);
+    // console.log(test);
 
     let bigV;
     if (test.x.value > test.y.value) {
@@ -74,6 +75,8 @@ class Grid extends Component {
         .select('svg')
         .attr('height', alteredY)
         .attr('width', alteredX);
+
+      svg.selectAll('*').remove();
 
       svg
         .selectAll('svg')

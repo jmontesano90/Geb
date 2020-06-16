@@ -1,7 +1,5 @@
 import React from 'react';
 
-const GridContext = React.createContext({
-  grids: [],
-});
+const GridContext = React.createContext({});
 
 export default GridContext;

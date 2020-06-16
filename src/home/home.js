@@ -17,7 +17,7 @@ class Home extends Component {
               style={{ textDecoration: 'none' }}
               className='buttons'
             >
-              My Grids
+              My Templates
             </Link>
             <Link
               to='/newGrid'
@@ -28,13 +28,10 @@ class Home extends Component {
             </Link>
           </header>
           <section>
-            <h3>Number of Grids</h3>
+            <h3>Number of Templates</h3>
             <p>1</p>
             <h3>Number of sites sampled</h3>
             <p>43</p>
-            <h3>Last sampling event</h3>
-            {/* <Grid></Grid> */}
-            <p> load last sampling grid with date and comment</p>
           </section>
         </main>
         <footer role='content-info'>Footer</footer>

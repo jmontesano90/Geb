@@ -14,12 +14,45 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      grids: [],
+      templates: [],
+      data: [],
     };
   }
+
+  handleAddTemplate = (template) => {
+    this.state.templates.unshift(template);
+    this.setState({ templates: this.state.templates });
+  };
+
+  handleDeleteTemplate = (id) => {
+    let temp = this.state.templates;
+    temp.splice(id, 1);
+    this.setState({
+      templates: temp,
+    });
+  };
+
+  handleAddData = (data) => {
+    this.state.data.unshift(data);
+    this.setState({ data: this.state.data });
+  };
+
+  handleDeleteData = (id) => {
+    let temp = this.state.data;
+    temp.splice(id, 1);
+    this.setState({
+      data: temp,
+    });
+  };
+
   render() {
     const value = {
-      grids: this.state.grids,
+      templates: this.state.templates,
+      data: this.state.data,
+      handleAddData: this.handleAddData,
+      handleAddTemplate: this.handleAddTemplate,
+      handleDeleteData: this.handleDeleteData,
+      handleDeleteTemplate: this.handleDeleteTemplate,
     };
     return (
       <GridContext.Provider value={value}>

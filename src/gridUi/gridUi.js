@@ -3,6 +3,7 @@ import GridGenerator from '../gridGenerator/gridGenerator';
 import Grid from '../grid/grid';
 import GridContext from '../GridContext';
 import transectGeneration from '../transect';
+import TemplateButton from './buttons/templateButton';
 import './gridUi.css';
 
 class GridUi extends Component {
@@ -59,6 +60,8 @@ class GridUi extends Component {
       ready: true,
     });
   };
+  static contextType = GridContext;
+
   render() {
     console.log(this.state.ready);
     const value = {
@@ -68,8 +71,8 @@ class GridUi extends Component {
     if (this.state.ready === true) {
       buttons = (
         <section id='saveOptions'>
-          <button>Save this outline?</button>{' '}
-          <button>Save this transect configuration and sample?</button>
+          <TemplateButton template={this.state.gridInformation} />{' '}
+          {/* <button>Save this transect configuration and template?</button> */}
           <div>
             <label htmlFor='Comments about site'>Comments</label>
             <input placeholder='Cloudy day' type='text' name='name' id='name' />
@@ -78,11 +81,11 @@ class GridUi extends Component {
       );
     }
     return (
-      <GridContext.Provider value={value}>
-        <GridGenerator></GridGenerator>
+      <div>
+        <GridGenerator handleUpdateGrid={this.handleUpdateGrid}></GridGenerator>
         {<Grid data={this.state.data} info={this.state.gridInformation}></Grid>}
         {buttons}
-      </GridContext.Provider>
+      </div>
     );
   }
 }

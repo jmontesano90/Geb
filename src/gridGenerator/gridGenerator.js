@@ -189,7 +189,7 @@ class gridGenerator extends Component {
 
     console.log('Information being passed to transectGeneration:');
     console.log(information);
-    this.context.handleUpdateGrid(this.state.gridInformation, this.state.data);
+    this.props.handleUpdateGrid(this.state.gridInformation, this.state.data);
   }
   rend;
 
