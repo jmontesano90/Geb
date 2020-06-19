@@ -4,14 +4,12 @@ import GridContext from '../../GridContext';
 class templateButton extends Component {
   static contextType = GridContext;
 
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.context.handleAddTemplate(this.props.template);
-    console.log('Added new template to context');
-    console.log(this.props);
-  }
+  };
   render() {
-    console.log(this.props.template);
+    templateButton.contextType = GridContext;
     return (
       <form onSubmit={this.handleSubmit}>
         <button type='submit'>Save this template?</button>

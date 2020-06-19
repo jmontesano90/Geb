@@ -1,0 +1,23 @@
+.values {
+  padding: 1px;
+  color: rgb(1, 82, 112);
+}
+
+.valueContainer {
+  margin: 10px;
+}
+
+.TemplateListItem__header {
+  border: 1px rgb(45, 45, 47) solid;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.deleteButton {
+  right: 5%;
+  top: 5%;
+}
+
+.templateListItem {
+  position: relative;
+}

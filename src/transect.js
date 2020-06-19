@@ -1,4 +1,4 @@
-export default function transectGeneration(info) {
+export default function transectGeneration(info, id) {
   let transectD = [];
   let rangeOfN = [];
   // console.log(info);
@@ -9,6 +9,7 @@ export default function transectGeneration(info) {
     yPartial: [],
     direction: [],
     partialTransectLength: info.partialTransectLength.value,
+    id: id,
   };
   let newRandom;
   let cardinalDirections = ['North', 'South', 'East', 'West'];

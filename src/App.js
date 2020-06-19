@@ -5,10 +5,12 @@ import SplashPage from './splashpage/splashPage';
 import { Route } from 'react-router-dom';
 import gridGenerator from './gridGenerator/gridGenerator';
 import homePage from './home/home';
-import myGrids from './myGrids/myGrids';
+import myTemplates from './myTemplates/myTemplates';
 import transectPage from './transectPage/transectPage';
 import GridContext from './GridContext';
 import gridUi from './gridUi/gridUi';
+import listTemplate from './listTemplate/listTemplate';
+import GridList from './gridList/gridList';
 
 class App extends Component {
   constructor(props) {
@@ -65,8 +67,14 @@ class App extends Component {
           <Route exact path='/' component={SplashPage} />
           <Route exact path='/newGrid' component={gridUi} />
           <Route exact path='/home' component={homePage} />
-          <Route exact path='/myGrids' component={myGrids} />
+          <Route exact path='/myTemplates' component={myTemplates} />
           <Route exact path='/transectPage' component={transectPage} />
+          <Route exact path='/template/:templateId' component={listTemplate} />
+          <Route
+            exact
+            path='/template/:templateId/grids'
+            component={GridList}
+          />
         </div>
       </GridContext.Provider>
     );

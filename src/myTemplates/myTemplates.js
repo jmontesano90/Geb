@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import './myGrids.css';
+import './myTemplates.css';
 import OutlineApiService from '../services/outline-api-service';
 import OutlineListContext from '../contexts/OutlineListContext';
-import OutlineListItem from '../OutLineListItem/OutlineListItem';
+import GridContext from '../GridContext';
+import TemplateListItem from '../TemplateListItem/TemplateListItem';
 import { Section } from '../utils/Utils';
 import { Link } from 'react-router-dom';
 
-class myGrids extends Component {
-  static contextType = OutlineListContext;
-
-  componentDidMount() {
-    this.context.clearError();
-    OutlineApiService.getOutlines()
-      .then(this.context.setOutlineList)
-      .catch(this.context.setError);
-  }
+class myTemplates extends Component {
+  static contextType = GridContext;
 
   renderOutlines() {
-    const { outlineList = [] } = this.context;
+    console.log(this.context.templates);
+    const { outlineList = [] } = this.context.templates;
     return outlineList.map((outline) => (
-      <OutlineListItem key={outline.id} outline={outline} />
+      <TemplateListItem key={outline.id} template={outline} />
     ));
   }
 
@@ -33,11 +28,14 @@ class myGrids extends Component {
             <h2>Transect Generator</h2>
           </header>
           <Section list className='OutlineListPage'>
-            {error ? (
+            {/* {error ? (
               <p className='red'>There was an error, try again</p>
             ) : (
               this.renderOutlines()
-            )}
+            )} */}
+            {this.context.templates.map((template, index) => (
+              <TemplateListItem template={template} key={index} id={index}/>
+            ))}
           </Section>
         </main>
         <footer role='content-info'>Footer</footer>
@@ -46,4 +44,4 @@ class myGrids extends Component {
   }
 }
 
-export default myGrids;
+export default myTemplates;

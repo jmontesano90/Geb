@@ -8,6 +8,7 @@ import './gridGenerator.css';
 import GridContext from '../GridContext';
 import ValidationError from './ValidationError';
 import { parse } from 'date-fns';
+import { Required } from '../utils/Utils';
 
 class gridGenerator extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class gridGenerator extends Component {
           value: 0,
           touched: false,
         },
+        id: '60',
       },
       data: {
         x: [14, 21, 2],
@@ -182,13 +184,15 @@ class gridGenerator extends Component {
     }
   }
 
+  nameValidation() {
+    if (this.state.gridInformation.name.value == 'no name') {
+      return 'All Templates must be named';
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.gridInformation);
     let information = this.state.gridInformation;
-
-    console.log('Information being passed to transectGeneration:');
-    console.log(information);
     this.props.handleUpdateGrid(this.state.gridInformation, this.state.data);
   }
   rend;
@@ -213,9 +217,11 @@ class gridGenerator extends Component {
                 type='text'
                 name='name'
                 id='name'
+                required
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <ValidationError message={this.nameValidation()} />
             <div>
               <label htmlFor='X length'>X length</label>
               <input
@@ -297,7 +303,8 @@ class gridGenerator extends Component {
                 this.transectLengthValidation() ||
                 this.partialTransectValidation() ||
                 this.fullTransectValidation() ||
-                this.xyValidation()
+                this.xyValidation() ||
+                this.nameValidation()
               }
             >
               Generate Custom Transect

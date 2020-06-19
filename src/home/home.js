@@ -3,8 +3,10 @@ import './home.css';
 import { Link } from 'react-router-dom';
 import Grid from '../grid/grid';
 import d3 from 'd3';
+import GridContext from '../GridContext';
 
 class Home extends Component {
+  static contextType = GridContext;
   render() {
     return (
       <section>
@@ -13,7 +15,7 @@ class Home extends Component {
             <h1>Geb</h1>
             <h2>Transect Generator</h2>
             <Link
-              to='/myGrids'
+              to='/myTemplates'
               style={{ textDecoration: 'none' }}
               className='buttons'
             >
@@ -24,14 +26,17 @@ class Home extends Component {
               style={{ textDecoration: 'none' }}
               className='buttons'
             >
-              New Grid
+              New Template
             </Link>
           </header>
           <section>
             <h3>Number of Templates</h3>
-            <p>1</p>
+            <p>{this.context.templates.length}</p>
             <h3>Number of sites sampled</h3>
-            <p>43</p>
+            <p>{this.context.data.length}</p>
+          </section>
+          <section>
+            <h3>Last Sampled Site</h3>
           </section>
         </main>
         <footer role='content-info'>Footer</footer>

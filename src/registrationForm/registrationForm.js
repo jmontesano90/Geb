@@ -16,7 +16,6 @@ export default class RegistrationForm extends Component {
     TokenService.saveAuthToken(
       TokenService.makeBasicAuthToken(user_name.value, password.value)
     );
-
     full_name.value = '';
     user_name.value = '';
     password.value = '';
