@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { NiceDate, Hyph } from '../utils/Utils';
 import './TemplateListItem.css';
 import GridContext from '../GridContext';
 

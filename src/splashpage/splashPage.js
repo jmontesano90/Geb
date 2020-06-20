@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './splashPage.css';
 import RegistrationForm from '../registrationForm/registrationForm';
+import Footer from '../footer/footer';
 
 class SplashPage extends Component {
   render() {
@@ -9,11 +10,11 @@ class SplashPage extends Component {
         <main role='main'>
           <header
             role='banner'
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundImage: `url(https://imgur.com/F4KxSGu.jpg)`,
-            }}
+            // style={{
+            //   width: '100%',
+            //   height: '100%',
+            //   backgroundImage: `url(https://imgur.com/F4KxSGu.jpg)`,
+            // }}
           >
             <h1>Geb</h1>
             <h2>Grid Randomizer</h2>
@@ -76,7 +77,7 @@ class SplashPage extends Component {
           </section>
         </main>
 
-        <footer role='content-info'>Footer</footer>
+        <Footer />
       </section>
     );
   }

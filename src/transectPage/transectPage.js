@@ -1,5 +1,6 @@
 import React from 'react';
 import './transectPage.css';
+import Footer from '../footer/footer';
 
 function Nav() {
   return (
@@ -18,7 +19,7 @@ function Nav() {
         <p>Comments for it here</p>
         <p>Option to delete it here</p>
       </main>
-      <footer role='content-info'>Footer</footer>
+      <Footer />
     </section>
   );
 }

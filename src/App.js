@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './nav/nav';
 import SplashPage from './splashpage/splashPage';
-import { Route } from 'react-router-dom';
-import gridGenerator from './gridGenerator/gridGenerator';
+import { Switch } from 'react-router-dom';
 import homePage from './home/home';
 import myTemplates from './myTemplates/myTemplates';
 import transectPage from './transectPage/transectPage';
@@ -11,6 +10,9 @@ import GridContext from './GridContext';
 import gridUi from './gridUi/gridUi';
 import listTemplate from './listTemplate/listTemplate';
 import GridList from './gridList/gridList';
+import LogIn from './LoginForm/LoginForm';
+import PublicOnlyRoute from './utils/PublicOnlyRoute';
+import PrivateOnlyRoute from './utils/PrivateRoute';
 
 class App extends Component {
   constructor(props) {
@@ -64,17 +66,32 @@ class App extends Component {
       <GridContext.Provider value={value}>
         <div className='App'>
           <Nav></Nav>
-          <Route exact path='/' component={SplashPage} />
-          <Route exact path='/newGrid' component={gridUi} />
-          <Route exact path='/home' component={homePage} />
-          <Route exact path='/myTemplates' component={myTemplates} />
-          <Route exact path='/transectPage' component={transectPage} />
-          <Route exact path='/template/:templateId' component={listTemplate} />
-          <Route
-            exact
-            path='/template/:templateId/grids'
-            component={GridList}
-          />
+          <Switch>
+            <PublicOnlyRoute exact path='/' component={SplashPage} />
+            <PublicOnlyRoute exact path='/login' component={LogIn} />
+            <PrivateOnlyRoute exact path='/newGrid' component={gridUi} />
+            <PrivateOnlyRoute exact path='/home' component={homePage} />
+            <PrivateOnlyRoute
+              exact
+              path='/myTemplates'
+              component={myTemplates}
+            />
+            <PrivateOnlyRoute
+              exact
+              path='/transectPage'
+              component={transectPage}
+            />
+            <PrivateOnlyRoute
+              exact
+              path='/template/:templateId'
+              component={listTemplate}
+            />
+            <PrivateOnlyRoute
+              exact
+              path='/template/:templateId/grids'
+              component={GridList}
+            />
+          </Switch>
         </div>
       </GridContext.Provider>
     );

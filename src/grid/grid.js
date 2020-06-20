@@ -1,32 +1,11 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import './grid.css';
-import { sv } from 'date-fns/locale';
 
 class Grid extends Component {
   render() {
     let data = this.props.data;
-
-    // data.x = parseInt(data.x);
-    // data.y = parseInt(data.y);
-    // data.xPartial = parseInt(data.xPartial);
-    // data.yPartial = parseInt(data.yPartial);
-    // data.direction = parseInt(data.direction);
-    // data.partialTransectLength = parseInt(data.partialTransectLength);
-
     let test = this.props.info;
-
-    // test.x.value = parseInt(test.x.value);
-    // test.y.value = parseInt(test.y.value);
-    // test.transectCount.value = parseInt(test.transectCount.value);
-    // test.partialTransectCount.value = parseInt(test.partialTransectCount.value);
-    // test.partialTransectLength.value = parseInt(
-    //   test.partialTransectLength.value
-    // );
-    // test.minimum.value = parseInt(test.minimum.value);
-
-    // console.log(data);
-    // console.log(test);
 
     let bigV;
     if (test.x.value > test.y.value) {
@@ -37,23 +16,12 @@ class Grid extends Component {
     let multFactor = 300 / bigV;
     let alteredX;
     let alteredY;
-    // console.log('multFactor outside loop: ' + multFactor);
 
     if (!test.x.value || !test.y.value) {
       console.log('Must wait for both numbers');
     } else {
-      // console.log('multFactor inside loop: ' + multFactor);
-      // //scales any grid up to 300px
-      // console.log('Test x value before transformation: ' + test.x.value);
-      // console.log('Test y value before transformation: ' + test.y.value);
       alteredX = test.x.value * multFactor;
       alteredY = test.y.value * multFactor;
-      // console.log('Test x value after transformation: ' + test.x.value);
-      // console.log('Test y value after transformation: ' + test.y.value);
-      // console.log('Altered x value after transformation: ' + alteredX);
-      // console.log('Altered y value after transformation: ' + alteredY);
-
-      // console.log(data.x);
 
       for (let i = 0; i < data.x.length; i++) {
         data.x[i] = data.x[i] * multFactor;
@@ -68,8 +36,6 @@ class Grid extends Component {
         data.yPartial[i] = data.yPartial[i] * multFactor;
       }
       data.partialTransectLength = data.partialTransectLength * multFactor;
-      // console.log('X data after transformation: ' + data.x);
-      // console.log('Y data after transformation: ' + data.y);
 
       let svg = d3
         .select('svg')

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TokenService from '../services/token-service';
 import { Button, Input } from '../utils/Utils';
+import './LoginForm.css';
+import Footer from '../footer/footer';
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -25,22 +27,25 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <form className='LoginForm' onSubmit={this.handleSubmitBasicAuth}>
-        <div role='alert'>{error && <p className='red'>{error}</p>}</div>
-        <div className='user_name'>
-          <label htmlFor='LoginForm__user_name'>User name</label>
-          <Input name='user_name' id='LoginForm__user_name'></Input>
-        </div>
-        <div className='password'>
-          <label htmlFor='LoginForm__password'>Password</label>
-          <Input
-            name='password'
-            type='password'
-            id='LoginForm__password'
-          ></Input>
-        </div>
-        <Button type='submit'>Login</Button>
-      </form>
+      <div>
+        <form className='LoginForm' onSubmit={this.handleSubmitBasicAuth}>
+          <div role='alert'>{error && <p className='red'>{error}</p>}</div>
+          <div className='user_name'>
+            <label htmlFor='LoginForm__user_name'>User name</label>
+            <Input name='user_name' id='LoginForm__user_name'></Input>
+          </div>
+          <div className='password'>
+            <label htmlFor='LoginForm__password'>Password</label>
+            <Input
+              name='password'
+              type='password'
+              id='LoginForm__password'
+            ></Input>
+          </div>
+          <Button type='submit'>Login</Button>
+        </form>
+        <Footer />
+      </div>
     );
   }
 }

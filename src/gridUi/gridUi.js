@@ -4,7 +4,6 @@ import Grid from '../grid/grid';
 import GridContext from '../GridContext';
 import transectGeneration from '../transect';
 import TemplateButton from './buttons/templateButton';
-import GridConfigurationButton from './buttons/gridConfigurationButton';
 import './gridUi.css';
 import idGeneration from '../idGeneration';
 
@@ -69,9 +68,9 @@ class GridUi extends Component {
   static contextType = GridContext;
 
   render() {
-    const value = {
-      handleUpdateGrid: this.handleUpdateGrid,
-    };
+    // const value = {
+    //   handleUpdateGrid: this.handleUpdateGrid,
+    // };
     let buttons;
     if (this.state.ready === true) {
       buttons = (

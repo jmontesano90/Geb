@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './nav.css';
 import { Link } from 'react-router-dom';
-import { Hyph } from '../utils/Utils';
 import TokenService from '../services/token-service';
 
 export default class Nav extends Component {
@@ -43,7 +42,7 @@ export default class Nav extends Component {
               className='icon'
               style={{ textDecoration: 'none' }}
             >
-              <img src='https://imgur.com/wB7hyOH.jpg'></img>
+              <img alt='logo' src='https://imgur.com/wB7hyOH.jpg'></img>
             </Link>
 
             {TokenService.hasAuthToken()

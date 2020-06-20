@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import GridContext from '../GridContext';
-import Grid from '../grid/grid';
+import GridOld from '../grid/gridOld';
 
 class gridList extends Component {
   static contextType = GridContext;
@@ -8,19 +8,17 @@ class gridList extends Component {
   render() {
     let selectedData = [];
     let i;
-    console.log(this.context);
+
     for (i = 0; i < this.context.data.length; i++) {
-      if (this.context.data[i].id == this.props.location.state.template.id) {
+      if (this.context.data[i].id === this.props.location.state.template.id) {
         selectedData.push(this.context.data[i]);
       }
     }
-    console.log(selectedData);
     let grids = selectedData.map((data, index) => (
-      <Grid
+      <GridOld
         data={data}
         info={this.props.location.state.template}
         key={index}
-        id={index}
       />
     ));
     return (

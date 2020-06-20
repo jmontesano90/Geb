@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './myTemplates.css';
-import OutlineApiService from '../services/outline-api-service';
-import OutlineListContext from '../contexts/OutlineListContext';
 import GridContext from '../GridContext';
 import TemplateListItem from '../TemplateListItem/TemplateListItem';
 import { Section } from '../utils/Utils';
-import { Link } from 'react-router-dom';
+import Footer from '../footer/footer';
 
 class myTemplates extends Component {
   static contextType = GridContext;
@@ -19,7 +17,7 @@ class myTemplates extends Component {
   }
 
   render() {
-    const { error } = this.context;
+    //const { error } = this.context;
     return (
       <section>
         <main role='main'>
@@ -34,11 +32,11 @@ class myTemplates extends Component {
               this.renderOutlines()
             )} */}
             {this.context.templates.map((template, index) => (
-              <TemplateListItem template={template} key={index} id={index}/>
+              <TemplateListItem template={template} key={index} id={index} />
             ))}
           </Section>
         </main>
-        <footer role='content-info'>Footer</footer>
+        <Footer />
       </section>
     );
   }

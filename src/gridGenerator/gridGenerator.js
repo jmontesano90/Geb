@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import './gridGenerator.css';
-// import Chart from 'chart.js';
-// import transect from '../transect';
-// import { render } from '@testing-library/react';
-// import Grid from '../grid/grid';
-// import transectGeneration from '../transect';
 import GridContext from '../GridContext';
 import ValidationError from './ValidationError';
-import { parse } from 'date-fns';
-import { Required } from '../utils/Utils';
 
 class gridGenerator extends Component {
   constructor(props) {
@@ -185,14 +178,13 @@ class gridGenerator extends Component {
   }
 
   nameValidation() {
-    if (this.state.gridInformation.name.value == 'no name') {
+    if (this.state.gridInformation.name.value === 'no name') {
       return 'All Templates must be named';
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    let information = this.state.gridInformation;
     this.props.handleUpdateGrid(this.state.gridInformation, this.state.data);
   }
   rend;

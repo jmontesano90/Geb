@@ -1,7 +1,6 @@
 export default function transectGeneration(info, id) {
   let transectD = [];
   let rangeOfN = [];
-  // console.log(info);
   let coords = {
     x: [],
     y: [],
@@ -12,9 +11,7 @@ export default function transectGeneration(info, id) {
     id: id,
   };
   let newRandom;
-  let cardinalDirections = ['North', 'South', 'East', 'West'];
-  // console.log('Info:');
-  // console.log(info);
+
   info.x.value = parseInt(info.x.value);
   info.y.value = parseInt(info.y.value);
   let totalLength = info.x.value + info.y.value;

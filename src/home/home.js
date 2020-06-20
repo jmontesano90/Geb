@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import './home.css';
 import { Link } from 'react-router-dom';
-import Grid from '../grid/grid';
-import d3 from 'd3';
 import GridContext from '../GridContext';
+import Footer from '../footer/footer';
 
 class Home extends Component {
   static contextType = GridContext;
@@ -37,9 +36,10 @@ class Home extends Component {
           </section>
           <section>
             <h3>Last Sampled Site</h3>
+            {/* <GridOld /> */}
           </section>
         </main>
-        <footer role='content-info'>Footer</footer>
+        <Footer />
       </section>
     );
   }

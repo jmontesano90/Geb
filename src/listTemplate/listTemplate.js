@@ -3,6 +3,7 @@ import transectGeneration from '../transect';
 import Grid from '../grid/grid';
 import GridConfigurationButton from '../gridUi/buttons/gridConfigurationButton';
 import { Link } from 'react-router-dom';
+import Footer from '../footer/footer';
 
 class listTemplate extends Component {
   constructor(props) {
@@ -116,7 +117,7 @@ class listTemplate extends Component {
             {buttons}
           </form>
         </main>
-        <footer role='content-info'>Footer</footer>
+        <Footer />
       </section>
     );
   }
