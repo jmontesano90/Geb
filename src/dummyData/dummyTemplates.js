@@ -1,7 +1,7 @@
 export default function dummyTemplates() {
   let dummyTemplates = {
     name: {
-      value: 'no name',
+      value: 'Connetquot',
       touched: false,
     },
     x: {

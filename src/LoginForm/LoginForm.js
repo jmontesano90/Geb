@@ -5,10 +5,6 @@ import './LoginForm.css';
 import Footer from '../footer/footer';
 
 export default class LoginForm extends Component {
-  static defaultProps = {
-    onLoginSuccess: () => {},
-  };
-
   state = { error: null };
 
   handleSubmitBasicAuth = (ev) => {
@@ -21,7 +17,8 @@ export default class LoginForm extends Component {
 
     user_name.value = '';
     password.value = '';
-    this.props.onLoginSuccess();
+
+    this.props.history.replace('/home');
   };
 
   render() {

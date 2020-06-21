@@ -1,6 +1,9 @@
-export default function transectGeneration(info, id) {
+import idGeneration from './idGeneration';
+
+export default function transectGeneration(info, templateId) {
   let transectD = [];
   let rangeOfN = [];
+  let d = new Date();
   let coords = {
     x: [],
     y: [],
@@ -8,7 +11,9 @@ export default function transectGeneration(info, id) {
     yPartial: [],
     direction: [],
     partialTransectLength: info.partialTransectLength.value,
-    id: id,
+    id: templateId,
+    dataId: idGeneration(),
+    date: d,
   };
   let newRandom;
 

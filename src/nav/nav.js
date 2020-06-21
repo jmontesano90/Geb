@@ -6,6 +6,7 @@ import TokenService from '../services/token-service';
 export default class Nav extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken();
+    this.props.history.push('/');
   };
 
   renderLogoutLink() {

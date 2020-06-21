@@ -75,16 +75,24 @@ class GridUi extends Component {
     if (this.state.ready === true) {
       buttons = (
         <section id='saveOptions'>
-          <TemplateButton template={this.state.gridInformation} />{' '}
+          <TemplateButton
+            history={this.props.history}
+            template={this.state.gridInformation}
+          />{' '}
         </section>
       );
     }
     return (
-      <div>
+      <section>
+        {' '}
+        <header role='banner'>
+          <h1>Geb</h1>
+          <h2>Template Generator</h2>
+        </header>
         <GridGenerator handleUpdateGrid={this.handleUpdateGrid}></GridGenerator>
         {<Grid data={this.state.data} info={this.state.gridInformation}></Grid>}
         {buttons}
-      </div>
+      </section>
     );
   }
 }

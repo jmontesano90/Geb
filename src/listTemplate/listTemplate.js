@@ -8,6 +8,10 @@ import Footer from '../footer/footer';
 class listTemplate extends Component {
   constructor(props) {
     super(props);
+    if (!this.props.location.state.template) {
+      this.props.history.replace('/home');
+    }
+
     this.state = {
       gridInformation: {
         name: {
@@ -94,8 +98,9 @@ class listTemplate extends Component {
         <main role='main'>
           <header role='banner'>
             <h1>Geb</h1>
-            <h2>Transect Generator</h2>
+            <h2>{this.state.gridInformation.name.value}</h2>
           </header>
+
           <Link
             to={{
               pathname: `/template/${this.state.gridInformation.id}/grids`,
@@ -106,6 +111,7 @@ class listTemplate extends Component {
           >
             See Previous Sampling Events
           </Link>
+
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <button type='submit'> Generate new sampling event?</button>
             {

@@ -23,7 +23,7 @@ class myTemplates extends Component {
         <main role='main'>
           <header role='banner'>
             <h1>Geb</h1>
-            <h2>Transect Generator</h2>
+            <h2>My Templates</h2>
           </header>
           <Section list className='OutlineListPage'>
             {/* {error ? (

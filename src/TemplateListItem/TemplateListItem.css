@@ -14,10 +14,15 @@
 }
 
 .deleteButton {
-  right: 5%;
-  top: 5%;
+  right: 10px;
+  top: 7px;
+  position: absolute;
 }
 
 .templateListItem {
   position: relative;
+}
+
+.collapsible {
+  color: blue;
 }

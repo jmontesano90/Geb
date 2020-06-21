@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import './grid.css';
 
 class GridOld extends Component {
-  render() {
+  componentDidMount() {
     let data = this.props.data;
     console.log(data.y);
     let test = this.props.info;
@@ -12,9 +12,10 @@ class GridOld extends Component {
     let svg = d3
       .select('svg')
       .attr('height', test.y.value)
-      .attr('width', test.x.value);
+      .attr('width', test.x.value)
+      .style('fill', 'red');
 
-    svg.selectAll('*').remove();
+    //svg.selectAll('*').remove();
 
     svg
       .selectAll('svg')
@@ -92,7 +93,8 @@ class GridOld extends Component {
       .attr('x', (d) => d + 4)
       .attr('y', (d, i) => data.yPartial[i] - 4)
       .text((d, i) => d + ', ' + data.yPartial[i]);
-
+  }
+  render() {
     return (
       <div id='svgAppender'>
         <svg></svg>

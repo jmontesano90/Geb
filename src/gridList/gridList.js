@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import GridContext from '../GridContext';
 import GridOld from '../grid/gridOld';
+import { NiceDate } from '../utils/Utils';
+import './gridList.css';
 
 class gridList extends Component {
   static contextType = GridContext;
+
+  handleClickDelete = (e) => {
+    e.preventDefault();
+    this.context.handleDeleteData(this.props.id);
+  };
 
   render() {
     let selectedData = [];
@@ -15,18 +22,36 @@ class gridList extends Component {
       }
     }
     let grids = selectedData.map((data, index) => (
-      <GridOld
-        data={data}
-        info={this.props.location.state.template}
-        key={index}
-      />
+      <div className='gridDividers'>
+        <input
+          type='image'
+          src='https://imgur.com/FyZgoKZ.png'
+          alt='initialzie button'
+          className='deleteButton'
+          width='35'
+          height='35'
+        />
+        <span>
+          Sampled on <NiceDate date={data.date} />
+        </span>
+
+        <GridOld
+          data={data}
+          info={this.props.location.state.template}
+          key={index}
+        />
+      </div>
     ));
     return (
-      <div>
-        {' '}
-        <h1>HELLLO AM I NOT RENDERING?</h1>
-        {grids}
-      </div>
+      <section>
+        <main role='main'>
+          <header role='banner'>
+            <h1>Geb</h1>
+            <h2>Transect Generator</h2>
+          </header>
+          {grids}
+        </main>
+      </section>
     );
   }
 }

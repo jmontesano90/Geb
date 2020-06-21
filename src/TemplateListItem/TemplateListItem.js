@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './TemplateListItem.css';
 import GridContext from '../GridContext';
+import Collapsible from 'react-collapsible';
 
 export default class TemplateListItem extends Component {
   static contextType = GridContext;
@@ -36,40 +37,42 @@ export default class TemplateListItem extends Component {
           >
             <h2 className='TemplateListItem__heading'>{template.name.value}</h2>
           </Link>
-          <div className='valueContainer'>
-            <span>X value: </span>
-            <span className='values'>{template.x.value}</span>
-          </div>
-          <div className='valueContainer'>
-            <span>Y value: </span>
-            <span className='values'>{template.y.value}</span>
-          </div>
-          <div className='valueContainer'>
-            <span>Transect count: </span>
-            <span className='values'>{template.transectCount.value}</span>
-          </div>
-          <div className='valueContainer'>
-            <span>
-              Minimum distance between transects:{' '}
-              <span className='values'>{template.minimum.value}</span>
-            </span>
-          </div>
-          <div className='valueContainer'>
-            <span>
-              Partial transect count:{' '}
-              <span className='values'>
-                {template.partialTransectCount.value}
+          <Collapsible trigger='View template details' className='collapsible'>
+            <div className='valueContainer'>
+              <span>X value: </span>
+              <span className='values'>{template.x.value}</span>
+            </div>
+            <div className='valueContainer'>
+              <span>Y value: </span>
+              <span className='values'>{template.y.value}</span>
+            </div>
+            <div className='valueContainer'>
+              <span>Transect count: </span>
+              <span className='values'>{template.transectCount.value}</span>
+            </div>
+            <div className='valueContainer'>
+              <span>
+                Minimum distance between transects:{' '}
+                <span className='values'>{template.minimum.value}</span>
               </span>
-            </span>
-          </div>
-          <div className='valueContainer'>
-            <span>
-              Partial transect length:{' '}
-              <span className='values'>
-                {template.partialTransectLength.value}
+            </div>
+            <div className='valueContainer'>
+              <span>
+                Partial transect count:{' '}
+                <span className='values'>
+                  {template.partialTransectCount.value}
+                </span>
               </span>
-            </span>
-          </div>
+            </div>
+            <div className='valueContainer'>
+              <span>
+                Partial transect length:{' '}
+                <span className='values'>
+                  {template.partialTransectLength.value}
+                </span>
+              </span>
+            </div>
+          </Collapsible>
         </header>
       </div>
     );
