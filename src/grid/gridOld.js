@@ -9,10 +9,20 @@ class GridOld extends Component {
     let test = this.props.info;
     console.log(test.x.value);
 
+    let bigV;
+    if (test.x.value > test.y.value) {
+      bigV = test.x.value;
+    } else {
+      bigV = test.y.value;
+    }
+    let multFactor = 300 / bigV;
+    let alteredX = test.x.value * multFactor;
+    let alteredY = test.y.value * multFactor;
+
     let svg = d3
       .select('svg')
-      .attr('height', test.y.value)
-      .attr('width', test.x.value)
+      .attr('height', alteredY)
+      .attr('width', alteredX)
       .style('fill', 'red');
 
     //svg.selectAll('*').remove();
@@ -22,7 +32,7 @@ class GridOld extends Component {
       .data(data.y)
       .enter()
       .append('rect')
-      .attr('width', test.x.value)
+      .attr('width', alteredX)
       .attr('height', 4)
       .attr('y', (d, i) => d)
       .attr('fill', 'rgb(1,82,112)');
@@ -32,7 +42,7 @@ class GridOld extends Component {
       .data(data.x)
       .enter()
       .append('rect')
-      .attr('height', test.y.value)
+      .attr('height', alteredY)
       .attr('width', 4)
       .attr('x', (d, i) => d)
       .attr('fill', 'rgb(197,84,40)');
@@ -82,7 +92,7 @@ class GridOld extends Component {
       .enter()
       .append('text')
       .attr('x', (d) => d + 4)
-      .attr('y', test.y.value - 10)
+      .attr('y', alteredY - 10)
       .text((d) => d);
 
     svg

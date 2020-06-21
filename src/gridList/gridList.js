@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import GridContext from '../GridContext';
-import GridOld from '../grid/gridOld';
 import { NiceDate } from '../utils/Utils';
 import './gridList.css';
+import { Link } from 'react-router-dom';
 
 class gridList extends Component {
   static contextType = GridContext;
@@ -21,25 +21,22 @@ class gridList extends Component {
         selectedData.push(this.context.data[i]);
       }
     }
+    if (selectedData.length === 0) {
+      this.props.history.push('/myTemplates');
+    }
     let grids = selectedData.map((data, index) => (
       <div className='gridDividers'>
-        <input
-          type='image'
-          src='https://imgur.com/FyZgoKZ.png'
-          alt='initialzie button'
-          className='deleteButton'
-          width='35'
-          height='35'
-        />
-        <span>
+        <Link
+          to={{
+            pathname: `/template/${data.id}/grids/${data.dataId}`,
+            state: {
+              template: this.props.location.state.template,
+              data: data,
+            },
+          }}
+        >
           Sampled on <NiceDate date={data.date} />
-        </span>
-
-        <GridOld
-          data={data}
-          info={this.props.location.state.template}
-          key={index}
-        />
+        </Link>
       </div>
     ));
     return (
@@ -47,7 +44,7 @@ class gridList extends Component {
         <main role='main'>
           <header role='banner'>
             <h1>Geb</h1>
-            <h2>Transect Generator</h2>
+            <h2>{this.props.location.state.template.name.value}</h2>
           </header>
           {grids}
         </main>

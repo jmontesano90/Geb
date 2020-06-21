@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Nav from './nav/nav';
 import SplashPage from './splashpage/splashPage';
-import { Switch } from 'react-router-dom';
 import homePage from './home/home';
 import myTemplates from './myTemplates/myTemplates';
 import transectPage from './transectPage/transectPage';
@@ -16,6 +15,7 @@ import PrivateOnlyRoute from './utils/PrivateRoute';
 import { Route } from 'react-router-dom';
 import dummyData from './dummyData/dummyData';
 import dummyTemplates from './dummyData/dummyTemplates';
+import GridSingle from './gridList/gridSingle/gridSingle';
 
 class App extends Component {
   state = {
@@ -85,8 +85,14 @@ class App extends Component {
             component={listTemplate}
           />
           <PrivateOnlyRoute
+            exact
             path='/template/:templateId/grids'
             component={GridList}
+          />
+          <PrivateOnlyRoute
+            exact
+            path='/template/:templateId/grids/:gridId'
+            component={GridSingle}
           />
         </div>
       </GridContext.Provider>

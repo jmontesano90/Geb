@@ -4,8 +4,10 @@ import Grid from '../grid/grid';
 import GridConfigurationButton from '../gridUi/buttons/gridConfigurationButton';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
+import GridContext from '../GridContext';
 
 class listTemplate extends Component {
+  static contextType = GridContext;
   constructor(props) {
     super(props);
     if (!this.props.location.state.template) {
@@ -93,6 +95,29 @@ class listTemplate extends Component {
         </section>
       );
     }
+    let i;
+    let selectedData = [];
+    for (i = 0; i < this.context.data.length; i++) {
+      if (this.context.data[i].id === this.state.gridInformation.id) {
+        selectedData.push(this.context.data[i]);
+      }
+    }
+
+    let link;
+    if (selectedData.length !== 0) {
+      link = (
+        <Link
+          to={{
+            pathname: `/template/${this.state.gridInformation.id}/grids`,
+            state: {
+              template: this.state.gridInformation,
+            },
+          }}
+        >
+          Previous Sampling Events
+        </Link>
+      );
+    }
     return (
       <section>
         <main role='main'>
@@ -101,16 +126,7 @@ class listTemplate extends Component {
             <h2>{this.state.gridInformation.name.value}</h2>
           </header>
 
-          <Link
-            to={{
-              pathname: `/template/${this.state.gridInformation.id}/grids`,
-              state: {
-                template: this.state.gridInformation,
-              },
-            }}
-          >
-            See Previous Sampling Events
-          </Link>
+          {link}
 
           <form onSubmit={(e) => this.handleSubmit(e)}>
             <button type='submit'> Generate new sampling event?</button>
