@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './gridGenerator.css';
 import GridContext from '../GridContext';
 import ValidationError from './ValidationError';
+import Collapsible from 'react-collapsible';
 
 class gridGenerator extends Component {
   constructor(props) {
@@ -224,6 +225,13 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>
+                The x and y values are for determining the height and width of
+                the grid template. They do not match any specific units, and are
+                meant to be used relatively.
+              </div>
+            </Collapsible>
             <div>
               <label htmlFor='Y length'>Y length</label>
               <input
@@ -234,6 +242,13 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>
+                The x and y values are for determining the height and width of
+                the grid template. They do not match any specific units, and are
+                meant to be used relatively.
+              </div>
+            </Collapsible>
             <ValidationError message={this.xyValidation()} />
             <div>
               <label htmlFor='Transect'>Full Transect count</label>
@@ -246,6 +261,12 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>
+                Full transcects cover the full distance of either the height or
+                distance, wherever they are randomly selected to be.
+              </div>
+            </Collapsible>
             <div>
               <label htmlFor='partial-transect'>Partial Transect Count</label>
               <ValidationError message={this.partialTransectValidation()} />
@@ -257,6 +278,14 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>
+                Partial transects are small transects that do not cover the full
+                distance as full transects do. They only cover the distance you
+                specify. They will be placed randomly inside your grid, with
+                their cardinal direction also randomized.
+              </div>
+            </Collapsible>
             <div>
               <label htmlFor='partial-transect-length'>
                 Partial Transect Length
@@ -270,6 +299,9 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>The length of the partial transects.</div>
+            </Collapsible>
             <div>
               <label htmlFor='minimum'>
                 Minimum distance between transects
@@ -283,6 +315,14 @@ class gridGenerator extends Component {
                 onChange={(e) => this.handleChange(e)}
               />
             </div>
+            <Collapsible trigger='+' className='collapsible'>
+              <div>
+                Minimum distance between transects only applies to full
+                transects. This will insure that full transects won't be on top
+                of each other. It is important to note excessively high minimum
+                distance can lead to very homogenized transects.
+              </div>
+            </Collapsible>
             <ValidationError message={this.validateNumberInputs()} />
             <ValidationError message={this.validatePositiveInputs()} />
             <button

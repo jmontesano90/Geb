@@ -13,7 +13,7 @@ class templateButton extends Component {
   render() {
     templateButton.contextType = GridContext;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} id='templateButton'>
         <button type='submit'>Save this template?</button>
       </form>
     );

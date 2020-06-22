@@ -3,10 +3,6 @@ import TokenService from '../services/token-service';
 import { Button, Input, Required } from '../utils/Utils';
 
 export default class RegistrationForm extends Component {
-  static defaultProps = {
-    onRegistrationSuccess: () => {},
-  };
-
   state = { error: null };
 
   handleSubmit = (ev) => {
@@ -19,7 +15,8 @@ export default class RegistrationForm extends Component {
     full_name.value = '';
     user_name.value = '';
     password.value = '';
-    this.props.onRegistrationSuccess();
+
+    this.props.history.replace('/home');
   };
 
   render() {

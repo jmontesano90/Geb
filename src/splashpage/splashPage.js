@@ -73,7 +73,10 @@ class SplashPage extends Component {
             <header>
               <h3>Start Sampling Now</h3>
             </header>
-            <RegistrationForm id='register'></RegistrationForm>
+            <RegistrationForm
+              id='register'
+              history={this.props.history}
+            ></RegistrationForm>
           </section>
         </main>
 

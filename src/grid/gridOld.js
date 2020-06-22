@@ -84,7 +84,7 @@ class GridOld extends Component {
       .enter()
       .append('text')
       .attr('y', (d, i) => d - 4)
-      .text((d) => d);
+      .text((d) => Math.round(d));
 
     svg
       .selectAll('svg')
@@ -93,7 +93,7 @@ class GridOld extends Component {
       .append('text')
       .attr('x', (d) => d + 4)
       .attr('y', alteredY - 10)
-      .text((d) => d);
+      .text((d) => Math.round(d));
 
     svg
       .selectAll('svg')
@@ -102,7 +102,7 @@ class GridOld extends Component {
       .append('text')
       .attr('x', (d) => d + 4)
       .attr('y', (d, i) => data.yPartial[i] - 4)
-      .text((d, i) => d + ', ' + data.yPartial[i]);
+      .text((d, i) => Math.round(d) + ', ' + Math.round(data.yPartial[i]));
   }
   render() {
     return (

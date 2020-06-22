@@ -90,7 +90,13 @@ class GridUi extends Component {
           <h2>Template Generator</h2>
         </header>
         <GridGenerator handleUpdateGrid={this.handleUpdateGrid}></GridGenerator>
-        {<Grid data={this.state.data} info={this.state.gridInformation}></Grid>}
+        {
+          <Grid
+            data={this.state.data}
+            info={this.state.gridInformation}
+            id='gridTest'
+          ></Grid>
+        }
         {buttons}
       </section>
     );

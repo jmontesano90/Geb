@@ -5,3 +5,17 @@
   margin-left: 2px;
   margin-right: 2px;
 }
+
+@media screen and (min-width: 600px) {
+  #outerSection {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  #outerSection {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+}

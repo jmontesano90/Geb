@@ -8,7 +8,7 @@ class Home extends Component {
   static contextType = GridContext;
   render() {
     return (
-      <section>
+      <section id='outerSection'>
         <main role='main'>
           <header role='banner'>
             <h1>Geb</h1>
