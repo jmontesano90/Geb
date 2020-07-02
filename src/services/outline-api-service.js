@@ -1,22 +1,22 @@
 import TokenService from '../services/token-service';
 import config from '../config';
 
-const OutlineApiService = {
-  getOutline(outlineId) {
-    return fetch(`${config.API_ENDPOINT}/outlines/${outlineId}`, {
+const TemplateApiService = {
+  getTemplate(templateId) {
+    return fetch(`${config.API_ENDPOINT}/templates/${templateId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
-  getOutlineGrids(outlineId) {
-    return fetch(`${config.API_ENDPOINT}/outlines/${outlineId}/grids`, {
+  getTemplateGrids(templateId) {
+    return fetch(`${config.API_ENDPOINT}/templates/${templateId}/grids`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
-  postGrid(outlineId, text) {
+  postGrid(templateId, x, y, partial_transect_length, x_partial, y_partial) {
     return fetch(`${config.API_ENDPOINT}/grids`, {
       method: 'POST',
       headers: {
@@ -24,13 +24,24 @@ const OutlineApiService = {
         authorization: `basic ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify({
-        outline_id: outlineId,
-        text,
+        template_id: templateId,
+        x,
+        y,
+        partial_transect_length,
+        x_partial,
+        y_partial,
       }),
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  getGrid(gridId) {
+    return fetch(`${config.API_ENDPOINT}/grids/${gridId}`, {
+      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
   },
 };
 
-export default OutlineApiService;
+export default TemplateApiService;

@@ -6,7 +6,7 @@ import Footer from '../footer/footer';
 class SplashPage extends Component {
   render() {
     return (
-      <section>
+      <section id='outerSection'>
         <main role='main'>
           <header
             role='banner'

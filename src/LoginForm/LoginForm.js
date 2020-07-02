@@ -24,7 +24,7 @@ export default class LoginForm extends Component {
   render() {
     const { error } = this.state;
     return (
-      <div>
+      <div id='outerSection'>
         <form className='LoginForm' onSubmit={this.handleSubmitBasicAuth}>
           <div role='alert'>{error && <p className='red'>{error}</p>}</div>
           <div className='user_name'>
