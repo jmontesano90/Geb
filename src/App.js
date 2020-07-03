@@ -13,19 +13,24 @@ import LogIn from './LoginForm/LoginForm';
 import PublicOnlyRoute from './utils/PublicOnlyRoute';
 import PrivateOnlyRoute from './utils/PrivateRoute';
 import { Route } from 'react-router-dom';
-import dummyData from './dummyData/dummyData';
-import dummyTemplates from './dummyData/dummyTemplates';
 import GridSingle from './gridList/gridSingle/gridSingle';
+import TemplateApiService from './services/template-api-service';
+import TemplateListContext from './contexts/TemplateListContext';
 
 class App extends Component {
   state = {
     templates: [],
     data: [],
   };
-
+  static contextType = TemplateListContext;
   componentDidMount() {
-    this.state.templates.unshift(dummyTemplates());
-    this.state.data.unshift(dummyData());
+    TemplateApiService.getAllTemplates(1).then((data) => {
+      data.map((data, index) => {
+        this.state.templates.unshift(data);
+      });
+      //this.state.templates.unshift(data);
+      console.log(data.length);
+    });
 
     this.setState({
       templates: this.state.templates,

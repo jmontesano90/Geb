@@ -1,9 +1,16 @@
-import TokenService from '../services/token-service';
+import TokenService from './token-service';
 import config from '../config';
 
 const TemplateApiService = {
   getTemplate(templateId) {
     return fetch(`${config.API_ENDPOINT}/templates/${templateId}`, {
+      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
+  getAllTemplates(userId) {
+    return fetch(`${config.API_ENDPOINT}/templates/${userId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
