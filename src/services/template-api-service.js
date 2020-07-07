@@ -50,13 +50,9 @@ const TemplateApiService = {
         x: x,
         y: y,
       }),
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .then((res) =>
-        !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-      );
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
   },
 };
 

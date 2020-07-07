@@ -35,6 +35,7 @@ class App extends Component {
     // });
 
     TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
+      console.log(templates);
       this.setState({ templates: templates });
     });
 
