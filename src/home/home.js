@@ -8,7 +8,6 @@ class Home extends Component {
   static contextType = GridContext;
 
   render() {
-    console.log(this.context.templates);
     return (
       <section id='outerSection'>
         <main role='main'>

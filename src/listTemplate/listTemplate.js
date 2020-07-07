@@ -17,31 +17,31 @@ class listTemplate extends Component {
     this.state = {
       gridInformation: {
         name: {
-          value: this.props.location.state.template.name.value,
+          value: this.props.location.state.template.name,
           touched: false,
         },
         x: {
-          value: this.props.location.state.template.x.value,
+          value: this.props.location.state.template.x,
           touched: false,
         },
         y: {
-          value: this.props.location.state.template.y.value,
+          value: this.props.location.state.template.y,
           touched: false,
         },
         transectCount: {
-          value: this.props.location.state.template.transectCount.value,
+          value: this.props.location.state.template.transect_count,
           touched: false,
         },
         partialTransectCount: {
-          value: this.props.location.state.template.partialTransectCount.value,
+          value: this.props.location.state.template.partial_transect_count,
           touched: false,
         },
         partialTransectLength: {
-          value: this.props.location.state.template.partialTransectLength.value,
+          value: this.props.location.state.template.partial_transect_length,
           touched: false,
         },
         minimum: {
-          value: this.props.location.state.template.minimum.value,
+          value: this.props.location.state.template.minimum,
           touched: false,
         },
         id: this.props.location.state.template.id,

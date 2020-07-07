@@ -186,9 +186,9 @@ class gridGenerator extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleUpdateGrid(this.state.gridInformation, this.state.data);
+    this.props.handleUpdateGrid(this.state.gridInformation);
   }
-  rend;
+  //rend;
 
   forceUpdateHandler = () => {
     this.forceUpdate();
@@ -264,7 +264,7 @@ class gridGenerator extends Component {
             <Collapsible trigger='+' className='collapsible'>
               <div>
                 Full transcects cover the full distance of either the height or
-                distance, wherever they are randomly selected to be.
+                width, wherever they are randomly selected to be.
               </div>
             </Collapsible>
             <div>

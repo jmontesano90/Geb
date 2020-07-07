@@ -16,6 +16,8 @@ import { Route } from 'react-router-dom';
 import GridSingle from './gridList/gridSingle/gridSingle';
 import TemplateApiService from './services/template-api-service';
 import TemplateListContext from './contexts/TemplateListContext';
+import GridApiService from './services/grid-api-service';
+import config from './config';
 
 class App extends Component {
   state = {
@@ -24,12 +26,27 @@ class App extends Component {
   };
   static contextType = TemplateListContext;
   componentDidMount() {
-    TemplateApiService.getAllTemplates(1).then((data) => {
-      data.map((data, index) => {
-        this.state.templates.unshift(data);
+    // TemplateApiService.getAllTemplates(1).then((data) => {
+    //   data.map((data, index) => {
+    //     this.state.templates.unshift(data);
+    //   });
+    //   //this.state.templates.unshift(data);
+    //   console.log(data.length);
+    // });
+
+    TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
+      this.setState({ templates: templates });
+    });
+
+    GridApiService.getAllGrids(config.USER_ID).then((data) => {
+      data.map((data) => {
+        data.x = data.x.split(',').map(Number);
+        data.y = data.y.split(',').map(Number);
+        data.x_partial = data.x_partial.split(',').map(Number);
+        data.y_partial = data.y_partial.split(',').map(Number);
+        data.direction = data.direction.split(',').map(Number);
       });
-      //this.state.templates.unshift(data);
-      console.log(data.length);
+      this.setState({ data: data });
     });
 
     this.setState({
@@ -39,6 +56,8 @@ class App extends Component {
   }
 
   handleAddTemplate = (template, cb) => {
+    let refinedTemplate = {};
+
     this.state.templates.unshift(template);
     this.setState({ templates: this.state.templates }, cb);
   };

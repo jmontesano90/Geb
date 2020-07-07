@@ -5,15 +5,31 @@ import './grid.css';
 class Grid extends Component {
   render() {
     let data = this.props.data;
-    let test = this.props.info;
-
+    let test;
+    // if (this.props.info.name.value === 'no name') {
+    //   console.log('no info in props');
+    //   test = {
+    //     x: {
+    //       value: 30,
+    //     },
+    //     y: {
+    //       value: 30,
+    //     },
+    //   };
+    // } else
+    test = this.props.info;
+    console.log(test);
+    console.log(data);
+    // if (this.props.info.name.value === 'no name') {
+    //   let svg = d3.select('svg').attr('height', 50).attr('width', 50);
+    // } else {
     let bigV;
     if (test.x.value > test.y.value) {
       bigV = test.x.value;
     } else {
       bigV = test.y.value;
     }
-    let multFactor = 300 / bigV;
+    let multFactor = 280 / bigV;
     let alteredX;
     let alteredY;
 
@@ -37,89 +53,100 @@ class Grid extends Component {
       }
       data.partialTransectLength = data.partialTransectLength * multFactor;
 
-      let svg = d3
-        .select('svg')
-        .attr('height', alteredY)
-        .attr('width', alteredX);
+      console.log(alteredX);
+      console.log(alteredY);
+      setTimeout(function () {
+        let svg = d3
+          .select('svg')
+          .attr('height', alteredY)
+          .attr('width', alteredX);
 
-      svg.selectAll('*').remove();
+        svg.selectAll('*').remove();
 
-      svg
-        .selectAll('svg')
-        .data(data.y)
-        .enter()
-        .append('rect')
-        .attr('width', alteredX)
-        .attr('height', 4)
-        .attr('y', (d, i) => d)
-        .attr('fill', 'rgb(1,82,112)');
+        svg
+          .selectAll('svg')
+          .data(data.y)
+          .enter()
+          .append('rect')
+          .attr('width', alteredX)
+          .attr('height', 4)
+          .attr('y', (d, i) => d)
+          .attr('fill', 'rgb(1,82,112)');
 
-      svg
-        .selectAll('svg')
-        .data(data.x)
-        .enter()
-        .append('rect')
-        .attr('height', alteredY)
-        .attr('width', 4)
-        .attr('x', (d, i) => d)
-        .attr('fill', 'rgb(197,84,40)');
+        svg
+          .selectAll('svg')
+          .data(data.x)
+          .enter()
+          .append('rect')
+          .attr('height', alteredY)
+          .attr('width', 4)
+          .attr('x', (d, i) => d)
+          .attr('fill', 'rgb(197,84,40)');
 
-      svg
-        .selectAll('svg')
-        .data(data.xPartial)
-        .enter()
-        .append('rect')
-        .attr('height', (d, i) => {
-          if (data.direction[i] <= 1) {
-            if (data.direction[i] === 0) {
-              return data.partialTransectLength;
+        svg
+          .selectAll('svg')
+          .data(data.xPartial)
+          .enter()
+          .append('rect')
+          .attr('height', (d, i) => {
+            if (data.direction[i] <= 1) {
+              if (data.direction[i] === 0) {
+                return data.partialTransectLength;
+              } else {
+                data.yPartial[i] =
+                  data.yPartial[i] - data.partialTransectLength;
+                return data.partialTransectLength;
+              }
             } else {
-              data.yPartial[i] = data.yPartial[i] - data.partialTransectLength;
-              return data.partialTransectLength;
+              return 4;
             }
-          } else {
-            return 4;
-          }
-        })
-        .attr('width', (d, i) => {
-          if (data.direction[i] > 1) {
-            if (data.direction[i] === 2) {
-              return data.partialTransectLength;
-            } else {
-              data.xPartial[i] = data.xPartial[i] - data.partialTransectLength;
-              return data.partialTransectLength;
-            }
-          } else return 4;
-        })
-        .attr('x', (d, i) => data.xPartial[i])
-        .attr('y', (d, i) => data.yPartial[i])
-        .attr('fill', 'rgb(109,88,59)');
+          })
+          .attr('width', (d, i) => {
+            if (data.direction[i] > 1) {
+              if (data.direction[i] === 2) {
+                return data.partialTransectLength;
+              } else {
+                data.xPartial[i] =
+                  data.xPartial[i] - data.partialTransectLength;
+                return data.partialTransectLength;
+              }
+            } else return 4;
+          })
+          .attr('x', (d, i) => data.xPartial[i])
+          .attr('y', (d, i) => data.yPartial[i])
+          .attr('fill', 'rgb(109,88,59)');
 
-      svg
-        .selectAll('svg')
-        .data(data.y)
-        .enter()
-        .append('text')
-        .attr('y', (d, i) => d - 4)
-        .text((d) => d / multFactor);
+        svg
+          .selectAll('svg')
+          .data(data.y)
+          .enter()
+          .append('text')
+          .attr('y', (d, i) => d - 4)
+          .text((d) => Math.round(d / multFactor));
 
-      svg
-        .selectAll('svg')
-        .data(data.x)
-        .enter()
-        .append('text')
-        .attr('x', (d) => d + 4)
-        .attr('y', alteredY - 10)
-        .text((d) => d / multFactor);
+        svg
+          .selectAll('svg')
+          .data(data.x)
+          .enter()
+          .append('text')
+          .attr('x', (d) => d + 4)
+          .attr('y', alteredY - 10)
+          .text((d) => Math.round(d / multFactor));
 
-      svg
-        .selectAll('svg')
-        .data(data.xPartial)
-        .enter()
-        .append('text')
-        .attr('x', (d) => d + 4)
-        .attr('y', (d, i) => data.yPartial[i] - 4)
-        .text((d, i) => d / multFactor + ', ' + data.yPartial[i] / multFactor);
+        svg
+          .selectAll('svg')
+          .data(data.xPartial)
+          .enter()
+          .append('text')
+          .attr('x', (d) => d + 4)
+          .attr('y', (d, i) => data.yPartial[i] - 4)
+          .text(
+            (d, i) =>
+              Math.round(d / multFactor) +
+              ', ' +
+              Math.round(data.yPartial[i] / multFactor)
+          );
+      }, 1);
     }
 
     return (

@@ -2,8 +2,9 @@ import React from 'react';
 import { format as formatDate } from 'date-fns';
 import './Utils.css';
 
-export function NiceDate({ date, format = 'MM-dd-yyyy' }) {
-  return formatDate(date, format);
+export function NiceDate({ date, format = 'yyyy-mm-dd' }) {
+  let javaDate = new Date(date);
+  return formatDate(javaDate, format);
 }
 
 export function Hyph() {

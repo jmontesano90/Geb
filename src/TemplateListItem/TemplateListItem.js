@@ -14,7 +14,6 @@ export default class TemplateListItem extends Component {
   render() {
     const { template } = this.props;
     console.log(template);
-    console.log(template.minimum.value);
     return (
       <div className='templateListItem'>
         <header className='TemplateListItem__header'>
@@ -35,32 +34,32 @@ export default class TemplateListItem extends Component {
               },
             }}
           >
-            <h2 className='TemplateListItem__heading'>{template.name.value}</h2>
+            <h2 className='TemplateListItem__heading'>{template.name}</h2>
           </Link>
           <Collapsible trigger='View template details' className='collapsible'>
             <div className='valueContainer'>
               <span>X value: </span>
-              <span className='values'>{template.x.value}</span>
+              <span className='values'>{template.x}</span>
             </div>
             <div className='valueContainer'>
               <span>Y value: </span>
-              <span className='values'>{template.y.value}</span>
+              <span className='values'>{template.y}</span>
             </div>
             <div className='valueContainer'>
               <span>Transect count: </span>
-              <span className='values'>{template.transectCount.value}</span>
+              <span className='values'>{template.transect_count}</span>
             </div>
             <div className='valueContainer'>
               <span>
                 Minimum distance between transects:{' '}
-                <span className='values'>{template.minimum.value}</span>
+                <span className='values'>{template.minimum}</span>
               </span>
             </div>
             <div className='valueContainer'>
               <span>
                 Partial transect count:{' '}
                 <span className='values'>
-                  {template.partialTransectCount.value}
+                  {template.partial_transect_count}
                 </span>
               </span>
             </div>
@@ -68,7 +67,7 @@ export default class TemplateListItem extends Component {
               <span>
                 Partial transect length:{' '}
                 <span className='values'>
-                  {template.partialTransectLength.value}
+                  {template.partial_transect_length}
                 </span>
               </span>
             </div>

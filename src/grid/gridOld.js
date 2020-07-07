@@ -18,7 +18,8 @@ class GridOld extends Component {
     let multFactor = 300 / bigV;
     let alteredX = test.x.value * multFactor;
     let alteredY = test.y.value * multFactor;
-
+    console.log(alteredX);
+    console.log(data.x_partial);
     let svg = d3
       .select('svg')
       .attr('height', alteredY)
@@ -49,16 +50,17 @@ class GridOld extends Component {
 
     svg
       .selectAll('svg')
-      .data(data.xPartial)
+      .data(data.x_partial)
       .enter()
       .append('rect')
       .attr('height', (d, i) => {
         if (data.direction[i] <= 1) {
           if (data.direction[i] === 0) {
-            return data.partialTransectLength;
+            return data.partial_transect_length;
           } else {
-            data.yPartial[i] = data.yPartial[i] - data.partialTransectLength;
-            return data.partialTransectLength;
+            data.y_partial[i] =
+              data.y_partial[i] - data.partial_transect_length;
+            return data.partial_transect_length;
           }
         } else {
           return 4;
@@ -67,15 +69,16 @@ class GridOld extends Component {
       .attr('width', (d, i) => {
         if (data.direction[i] > 1) {
           if (data.direction[i] === 2) {
-            return data.partialTransectLength;
+            return data.partial_transect_length;
           } else {
-            data.xPartial[i] = data.xPartial[i] - data.partialTransectLength;
-            return data.partialTransectLength;
+            data.x_partial[i] =
+              data.x_partial[i] - data.partial_transect_length;
+            return data.partial_transect_length;
           }
         } else return 4;
       })
-      .attr('x', (d, i) => data.xPartial[i])
-      .attr('y', (d, i) => data.yPartial[i])
+      .attr('x', (d, i) => data.x_partial[i])
+      .attr('y', (d, i) => data.y_partial[i])
       .attr('fill', 'rgb(109,88,59)');
 
     svg
@@ -97,12 +100,12 @@ class GridOld extends Component {
 
     svg
       .selectAll('svg')
-      .data(data.xPartial)
+      .data(data.x_partial)
       .enter()
       .append('text')
       .attr('x', (d) => d + 4)
-      .attr('y', (d, i) => data.yPartial[i] - 4)
-      .text((d, i) => Math.round(d) + ', ' + Math.round(data.yPartial[i]));
+      .attr('y', (d, i) => data.y_partial[i] - 4)
+      .text((d, i) => Math.round(d) + ', ' + Math.round(data.y_partial[i]));
   }
   render() {
     return (

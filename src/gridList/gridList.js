@@ -28,14 +28,14 @@ class gridList extends Component {
       <div className='gridDividers'>
         <Link
           to={{
-            pathname: `/template/${data.id}/grids/${data.dataId}`,
+            pathname: `/template/${data.template_id}/grids/${data.id}`,
             state: {
               template: this.props.location.state.template,
               data: data,
             },
           }}
         >
-          Sampled on <NiceDate date={data.date} />
+          Sampled on <NiceDate date={data.date_created} />
         </Link>
       </div>
     ));

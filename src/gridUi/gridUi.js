@@ -82,6 +82,16 @@ class GridUi extends Component {
         </section>
       );
     }
+    let grid;
+    if (this.state.ready === true) {
+      grid = (
+        <Grid
+          data={this.state.data}
+          info={this.state.gridInformation}
+          id='gridTest'
+        ></Grid>
+      );
+    }
     return (
       <section>
         {' '}
@@ -90,13 +100,7 @@ class GridUi extends Component {
           <h2>Template Generator</h2>
         </header>
         <GridGenerator handleUpdateGrid={this.handleUpdateGrid}></GridGenerator>
-        {
-          <Grid
-            data={this.state.data}
-            info={this.state.gridInformation}
-            id='gridTest'
-          ></Grid>
-        }
+        {grid}
         {buttons}
       </section>
     );
