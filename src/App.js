@@ -56,11 +56,14 @@ class App extends Component {
     });
   }
 
-  handleAddTemplate = (template, cb) => {
-    let refinedTemplate = {};
+  // handleAddTemplate = (template, cb) => {
+  //   this.state.templates.unshift(template);
+  //   this.setState({ templates: this.state.templates }, cb);
+  // };
 
+  handleAddTemplate = (template) => {
     this.state.templates.unshift(template);
-    this.setState({ templates: this.state.templates }, cb);
+    this.setState({ templates: this.state.templates });
   };
 
   handleDeleteTemplate = (id) => {

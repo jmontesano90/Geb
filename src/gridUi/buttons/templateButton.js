@@ -9,10 +9,6 @@ class templateButton extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { template } = this.props;
-    console.log(template);
-    // this.context.handleAddTemplate(this.props.template, () => {
-    //   this.props.history.push('/myTemplates');
-    // });
     TemplateApiService.postTemplate(
       template.minimum.value,
       template.name.value,
@@ -22,7 +18,9 @@ class templateButton extends Component {
       config.USER_ID,
       template.x.value,
       template.y.value
-    );
+    )
+      .then(this.context.handleAddTemplate(this.props.template))
+      .then(this.props.history.push('/home'));
   };
   render() {
     templateButton.contextType = GridContext;
