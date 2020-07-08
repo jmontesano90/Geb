@@ -66,6 +66,17 @@ class App extends Component {
     this.setState({ templates: this.state.templates });
   };
 
+  // handleUpdateTemplates = (templates) => {
+  //   this.state.templates = templates;
+  //   this.setState({ templates: this.state.templates });
+  // };
+
+  handleUpdateTemplates = () => {
+    TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
+      this.setState({ templates: templates });
+    });
+  };
+
   handleDeleteTemplate = (id) => {
     let temp = this.state.templates;
     temp.splice(id, 1);
@@ -95,6 +106,7 @@ class App extends Component {
       handleAddTemplate: this.handleAddTemplate,
       handleDeleteData: this.handleDeleteData,
       handleDeleteTemplate: this.handleDeleteTemplate,
+      handleUpdateTemplates: this.handleUpdateTemplates,
     };
     return (
       <GridContext.Provider value={value}>

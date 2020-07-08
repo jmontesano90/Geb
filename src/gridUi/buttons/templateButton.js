@@ -9,6 +9,16 @@ class templateButton extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { template } = this.props;
+    const fixedTemplate = {
+      minimum: template.minimum,
+      name: template.name,
+      partial_transect_count: template.partialTransectCount,
+      partial_transect_length: template.partialTransectLength,
+      transect_count: template.transectCount,
+      user_id: config.USER_ID,
+      x: template.x,
+      y: template.y,
+    };
     TemplateApiService.postTemplate(
       template.minimum.value,
       template.name.value,
@@ -19,8 +29,12 @@ class templateButton extends Component {
       template.x.value,
       template.y.value
     )
-      .then(this.context.handleAddTemplate(this.props.template))
-      .then(this.props.history.push('/home'));
+      //.then(this.context.handleAddTemplate(fixedTemplate))
+      .then(this.context.handleUpdateTemplates())
+      .then(console.log(this.context.templates))
+      .then(this.context.handleUpdateTemplates())
+      .then(console.log(this.context.templates))
+      .then(this.props.history.push('/myTemplates'));
   };
   render() {
     templateButton.contextType = GridContext;
