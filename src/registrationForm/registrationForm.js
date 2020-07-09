@@ -19,10 +19,11 @@ export default class RegistrationForm extends Component {
       password: password.value,
       full_name: full_name.value,
     })
-      .then((user) => {
-        full_name.value = '';
-        user_name.value = '';
-        password.value = '';
+      .then(() => {
+        // full_name.value = '';
+        // user_name.value = '';
+        // password.value = '';
+        this.props.history.replace('/home');
         this.props.onRegistrationSuccess();
         this.props.history.replace('/home');
       })

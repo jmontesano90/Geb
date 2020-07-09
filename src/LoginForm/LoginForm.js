@@ -36,6 +36,7 @@ export default class LoginForm extends Component {
         console.log(user_name.value);
         TokenService.saveAuthToken(res.authToken);
         //this.context.updateUserId(AuthApiService.getUserId(user_name.value));
+        console.log(AuthApiService.getUserId(user_name.value));
         user_name.value = '';
         password.value = '';
 
