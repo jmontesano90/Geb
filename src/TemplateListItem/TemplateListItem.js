@@ -10,7 +10,6 @@ export default class TemplateListItem extends Component {
 
   handleClickDelete = (e) => {
     e.preventDefault();
-    console.log(this.props.template.id);
     TemplateApiService.deleteTemplateGrids(this.props.template.id)
       .then(() => {
         TemplateApiService.deleteTemplate(this.props.template.id);

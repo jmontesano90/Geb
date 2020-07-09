@@ -9,7 +9,6 @@ class myTemplates extends Component {
   static contextType = GridContext;
 
   renderOutlines() {
-    console.log(this.context.templates);
     const { outlineList = [] } = this.context.templates;
     return outlineList.map((outline) => (
       <TemplateListItem key={outline.id} template={outline} />

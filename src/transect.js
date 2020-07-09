@@ -20,18 +20,11 @@ export default function transectGeneration(info, templateId) {
   info.x.value = parseInt(info.x.value);
   info.y.value = parseInt(info.y.value);
   let totalLength = info.x.value + info.y.value;
-  // console.log('Total Length is: ' + totalLength);
   transectD.push(Math.floor(Math.random() * totalLength));
-  // console.log('Transectd at 0 is: ' + transectD[0]);
   let i = 0;
   let y = 1;
   for (i = 0; i < info.transectCount.value - 1; i++) {
-    // console.log('  ');
-    // console.log('  ');
-    // console.log(transectD);
-    // console.log('  ');
     newRandom = Math.floor(Math.random() * totalLength);
-    // console.log('New random: ' + newRandom);
     for (y = 0; y < info.minimum.value; y++) {
       rangeOfN.push(transectD[i] - y);
       rangeOfN.push(transectD[i] + y);
@@ -39,29 +32,21 @@ export default function transectGeneration(info, templateId) {
     let z = 0;
     let checkIfValid = false;
     let secondaryCheck = 0;
-    // console.log('Current random number being checked: ' + newRandom);
     while (checkIfValid === false) {
       if (newRandom === rangeOfN[z]) {
-        // console.log('Within unacceptable range, :' + newRandom);
-        // console.log('z value' + z);
         secondaryCheck += 1;
       }
       if (z + 1 === rangeOfN.length) {
         if (secondaryCheck === 0) {
-          // console.log('Passed checks, adding ' + newRandom);
           transectD.push(newRandom);
           checkIfValid = true;
         } else {
           newRandom = Math.floor(Math.random() * totalLength);
           z = 0;
           secondaryCheck = 0;
-          // console.log(
-          //   'new random failed checks, rerolling new number as: ' + newRandom
-          // );
         }
       }
       z += 1;
-      // console.log('Incrementing z');
     }
   }
   let b = 0;

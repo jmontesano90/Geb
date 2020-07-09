@@ -5,9 +5,7 @@ import './grid.css';
 class GridOld extends Component {
   componentDidMount() {
     let data = this.props.data;
-    console.log(data.y);
     let test = this.props.info;
-    console.log(test.x.value);
 
     let bigV;
     if (test.x.value > test.y.value) {
@@ -18,15 +16,11 @@ class GridOld extends Component {
     let multFactor = 300 / bigV;
     let alteredX = test.x.value * multFactor;
     let alteredY = test.y.value * multFactor;
-    console.log(alteredX);
-    console.log(data.x_partial);
     let svg = d3
       .select('svg')
       .attr('height', alteredY)
       .attr('width', alteredX)
       .style('fill', 'red');
-
-    //svg.selectAll('*').remove();
 
     svg
       .selectAll('svg')

@@ -27,7 +27,6 @@ class gridConfigurationButton extends Component {
     //.then(this.context.handleAddData(this.props.data));
   };
   render() {
-    console.log(this.props.data);
     gridConfigurationButton.contextType = GridContext;
     return (
       <form onSubmit={this.handleSubmit}>

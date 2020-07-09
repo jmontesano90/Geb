@@ -6,23 +6,7 @@ class Grid extends Component {
   render() {
     let data = this.props.data;
     let test;
-    // if (this.props.info.name.value === 'no name') {
-    //   console.log('no info in props');
-    //   test = {
-    //     x: {
-    //       value: 30,
-    //     },
-    //     y: {
-    //       value: 30,
-    //     },
-    //   };
-    // } else
     test = this.props.info;
-    console.log(test);
-    console.log(data);
-    // if (this.props.info.name.value === 'no name') {
-    //   let svg = d3.select('svg').attr('height', 50).attr('width', 50);
-    // } else {
     let bigV;
     if (test.x.value > test.y.value) {
       bigV = test.x.value;
@@ -53,8 +37,6 @@ class Grid extends Component {
       }
       data.partialTransectLength = data.partialTransectLength * multFactor;
 
-      console.log(alteredX);
-      console.log(alteredY);
       setTimeout(function () {
         let svg = d3
           .select('svg')

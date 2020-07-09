@@ -20,12 +20,10 @@ export class TemplateListProvider extends Component {
     this.setState({ templateList });
   };
   setGridList = (gridList) => {
-    console.log('yes I ran');
     this.setState({ gridList });
   };
 
   setError = (error) => {
-    console.error(error);
     this.setState({ error });
   };
 

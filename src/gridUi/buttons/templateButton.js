@@ -29,16 +29,12 @@ class templateButton extends Component {
       template.x.value,
       template.y.value
     )
-      //.then(this.context.handleAddTemplate(fixedTemplate))
       .then(() => {
         this.context.handleUpdateTemplates();
       })
       .then(() => {
         this.props.history.push('/myTemplates');
       });
-    //.then(this.context.handleUpdateTemplates())
-    //.then(console.log(this.context.templates))
-    //.then(this.props.history.push('/myTemplates'));
   };
   render() {
     templateButton.contextType = GridContext;

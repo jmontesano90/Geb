@@ -23,20 +23,11 @@ class App extends Component {
   state = {
     templates: [],
     data: [],
-    userId: '',
+    userId: 0,
   };
   static contextType = TemplateListContext;
   componentDidMount() {
-    // TemplateApiService.getAllTemplates(1).then((data) => {
-    //   data.map((data, index) => {
-    //     this.state.templates.unshift(data);
-    //   });
-    //   //this.state.templates.unshift(data);
-    //   console.log(data.length);
-    // });
-
     TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
-      console.log(templates);
       this.setState({ templates: templates });
     });
 
@@ -62,6 +53,7 @@ class App extends Component {
   //   this.setState({ templates: this.state.templates }, cb);
   // };
   updateUserId = (userId) => {
+    console.log(userId);
     this.setState({ userId: userId });
   };
 
