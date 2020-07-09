@@ -3,6 +3,13 @@ import config from '../config';
 import { min } from 'date-fns';
 
 const TemplateApiService = {
+  getUserId(userName) {
+    return fetch(`${config.API_ENDPOINT}/auth/${userName}`, {
+      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
+    }).then((res) =>
+      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
+    );
+  },
   getTemplate(templateId) {
     return fetch(`${config.API_ENDPOINT}/templates/${templateId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
@@ -16,6 +23,20 @@ const TemplateApiService = {
     }).then((res) =>
       !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
     );
+  },
+  deleteTemplateGrids(templateId) {
+    return fetch(`${config.API_ENDPOINT}/templates/grids/${templateId}`, {
+      method: 'DELETE',
+      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
+    });
+    //.then((res) => (!res.ok ? res.then((e) => Promise.reject(e)) : res));
+  },
+  deleteTemplate(templateId) {
+    return fetch(`${config.API_ENDPOINT}/templates/template/${templateId}`, {
+      method: 'DELETE',
+      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
+    });
+    //.then((res) => (!res.ok ? res.then((e) => Promise.reject(e)) : res));
   },
   getTemplateGrids(templateId) {
     return fetch(`${config.API_ENDPOINT}/templates/${templateId}/grids`, {

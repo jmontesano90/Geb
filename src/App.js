@@ -23,6 +23,7 @@ class App extends Component {
   state = {
     templates: [],
     data: [],
+    userId: '',
   };
   static contextType = TemplateListContext;
   componentDidMount() {
@@ -60,6 +61,9 @@ class App extends Component {
   //   this.state.templates.unshift(template);
   //   this.setState({ templates: this.state.templates }, cb);
   // };
+  updateUserId = (userId) => {
+    this.setState({ userId: userId });
+  };
 
   handleAddTemplate = (template) => {
     this.state.templates.unshift(template);
@@ -74,6 +78,19 @@ class App extends Component {
   handleUpdateTemplates = () => {
     TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
       this.setState({ templates: templates });
+    });
+  };
+
+  handleUpdateGrids = () => {
+    GridApiService.getAllGrids(config.USER_ID).then((data) => {
+      data.map((data) => {
+        data.x = data.x.split(',').map(Number);
+        data.y = data.y.split(',').map(Number);
+        data.x_partial = data.x_partial.split(',').map(Number);
+        data.y_partial = data.y_partial.split(',').map(Number);
+        data.direction = data.direction.split(',').map(Number);
+      });
+      this.setState({ data: data });
     });
   };
 
@@ -107,6 +124,8 @@ class App extends Component {
       handleDeleteData: this.handleDeleteData,
       handleDeleteTemplate: this.handleDeleteTemplate,
       handleUpdateTemplates: this.handleUpdateTemplates,
+      handleUpdateGrids: this.handleUpdateGrids,
+      updateUserId: this.updateUserId,
     };
     return (
       <GridContext.Provider value={value}>

@@ -98,7 +98,7 @@ class listTemplate extends Component {
     let i;
     let selectedData = [];
     for (i = 0; i < this.context.data.length; i++) {
-      if (this.context.data[i].id === this.state.gridInformation.id) {
+      if (this.context.data[i].template_id === this.state.gridInformation.id) {
         selectedData.push(this.context.data[i]);
       }
     }

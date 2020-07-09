@@ -65,8 +65,7 @@ class SplashPage extends Component {
             </header>
             <p>
               Whenever a site is sampled, Geb will record the transect
-              configuration and any comments you wish to place about the day
-              (humidity, cloud cover, how you were feeling etc)
+              configuration.
             </p>
           </section>
           <section>

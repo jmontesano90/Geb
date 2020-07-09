@@ -3,13 +3,21 @@ import { Link } from 'react-router-dom';
 import './TemplateListItem.css';
 import GridContext from '../GridContext';
 import Collapsible from 'react-collapsible';
+import TemplateApiService from '../services/template-api-service';
 
 export default class TemplateListItem extends Component {
   static contextType = GridContext;
 
   handleClickDelete = (e) => {
     e.preventDefault();
-    this.context.handleDeleteTemplate(this.props.id);
+    console.log(this.props.template.id);
+    TemplateApiService.deleteTemplateGrids(this.props.template.id)
+      .then(() => {
+        TemplateApiService.deleteTemplate(this.props.template.id);
+      })
+      .then(() => {
+        this.context.handleDeleteTemplate(this.props.id);
+      });
   };
   render() {
     const { template } = this.props;

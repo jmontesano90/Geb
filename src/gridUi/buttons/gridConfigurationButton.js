@@ -18,7 +18,13 @@ class gridConfigurationButton extends Component {
       data.xPartial.toString(),
       data.yPartial.toString(),
       data.direction.toString()
-    ).then(this.context.handleAddData(this.props.data));
+    ).then(() => {
+      this.context.handleUpdateGrids();
+    });
+    // .then(() => {
+    //   this.props.history.push(`/template/${data.id}`);
+    // });
+    //.then(this.context.handleAddData(this.props.data));
   };
   render() {
     console.log(this.props.data);

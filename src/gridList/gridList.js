@@ -17,7 +17,10 @@ class gridList extends Component {
     let i;
 
     for (i = 0; i < this.context.data.length; i++) {
-      if (this.context.data[i].id === this.props.location.state.template.id) {
+      if (
+        this.context.data[i].template_id ===
+        this.props.location.state.template.id
+      ) {
         selectedData.push(this.context.data[i]);
       }
     }

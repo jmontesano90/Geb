@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TokenService from '../services/token-service';
 import { Button, Input, Required } from '../utils/Utils';
+import AuthApiService from '../services/auth-api-service';
 
 export default class RegistrationForm extends Component {
   state = { error: null };
@@ -12,11 +13,22 @@ export default class RegistrationForm extends Component {
     TokenService.saveAuthToken(
       TokenService.makeBasicAuthToken(user_name.value, password.value)
     );
-    full_name.value = '';
-    user_name.value = '';
-    password.value = '';
-
-    this.props.history.replace('/home');
+    this.setState({ error: null });
+    AuthApiService.postUser({
+      user_name: user_name.value,
+      password: password.value,
+      full_name: full_name.value,
+    })
+      .then((user) => {
+        full_name.value = '';
+        user_name.value = '';
+        password.value = '';
+        this.props.onRegistrationSuccess();
+        this.props.history.replace('/home');
+      })
+      .catch((res) => {
+        this.setState({ error: res.error });
+      });
   };
 
   render() {

@@ -2,6 +2,9 @@ import TokenService from './token-service';
 import config from '../config';
 
 const GridApiService = {
+  stringifyData(data){
+
+  },
   getAllGrids(userId) {
     return fetch(`${config.API_ENDPOINT}/grids/user/${userId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
