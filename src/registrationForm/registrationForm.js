@@ -20,11 +20,13 @@ export default class RegistrationForm extends Component {
       full_name: full_name.value,
     })
       .then(() => {
-        // full_name.value = '';
+        AuthApiService.postLogin({
+          user_name: user_name.value,
+          password: password.value,
+        });
+        console.log('Got to next then');
         // user_name.value = '';
         // password.value = '';
-        this.props.history.replace('/home');
-        this.props.onRegistrationSuccess();
         this.props.history.replace('/home');
       })
       .catch((res) => {

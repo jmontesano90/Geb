@@ -3,13 +3,7 @@ import config from '../config';
 import { min } from 'date-fns';
 
 const TemplateApiService = {
-  getUserId(userName) {
-    return fetch(`${config.API_ENDPOINT}/auth/${userName}`, {
-      headers: { authorization: `basic ${TokenService.getAuthToken()}` },
-    }).then((res) =>
-      !res.ok ? res.json().then((e) => Promise.reject(e)) : res.json()
-    );
-  },
+
   getTemplate(templateId) {
     return fetch(`${config.API_ENDPOINT}/templates/${templateId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },
