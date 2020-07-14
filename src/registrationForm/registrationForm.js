@@ -28,7 +28,9 @@ export default class RegistrationForm extends Component {
         })
           .then(() => this.context.handleUpdateTemplates())
           .then(() => this.context.handleUpdateGrids());
-        this.props.history.replace('/home');
+        if (this.context.id === 0) {
+          this.props.history.replace('/');
+        } else this.props.history.replace('/home');
       })
       .catch((res) => {
         this.setState({ error: res.error });
