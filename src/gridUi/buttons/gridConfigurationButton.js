@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import GridContext from '../../GridContext';
 import GridApiService from '../../services/grid-api-service';
-import config from '../../config';
 
 class gridConfigurationButton extends Component {
   static contextType = GridContext;
@@ -11,7 +10,7 @@ class gridConfigurationButton extends Component {
     const data = this.props.data;
     GridApiService.postGrid(
       data.id,
-      config.USER_ID,
+      this.context.id,
       data.x.toString(),
       data.y.toString(),
       Math.round(data.partialTransectLength),
@@ -21,10 +20,6 @@ class gridConfigurationButton extends Component {
     ).then(() => {
       this.context.handleUpdateGrids();
     });
-    // .then(() => {
-    //   this.props.history.push(`/template/${data.id}`);
-    // });
-    //.then(this.context.handleAddData(this.props.data));
   };
   render() {
     gridConfigurationButton.contextType = GridContext;

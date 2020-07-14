@@ -16,11 +16,11 @@ export default class TemplateListItem extends Component {
       })
       .then(() => {
         this.context.handleDeleteTemplate(this.props.id);
-      });
+      })
+      .then(() => this.context.handleUpdateGrids());
   };
   render() {
     const { template } = this.props;
-    console.log(template);
     return (
       <div className='templateListItem'>
         <header className='TemplateListItem__header'>

@@ -17,7 +17,6 @@ import GridSingle from './gridList/gridSingle/gridSingle';
 import TemplateApiService from './services/template-api-service';
 import TemplateListContext from './contexts/TemplateListContext';
 import GridApiService from './services/grid-api-service';
-import config from './config';
 
 class App extends Component {
   state = {
@@ -27,17 +26,18 @@ class App extends Component {
   };
   static contextType = TemplateListContext;
   componentDidMount() {
-    TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
+    TemplateApiService.getAllTemplates(this.state.userId).then((templates) => {
       this.setState({ templates: templates });
     });
 
-    GridApiService.getAllGrids(config.USER_ID).then((data) => {
+    GridApiService.getAllGrids(this.state.userId).then((data) => {
       data.map((data) => {
         data.x = data.x.split(',').map(Number);
         data.y = data.y.split(',').map(Number);
         data.x_partial = data.x_partial.split(',').map(Number);
         data.y_partial = data.y_partial.split(',').map(Number);
         data.direction = data.direction.split(',').map(Number);
+        return data;
       });
       this.setState({ data: data });
     });
@@ -48,12 +48,7 @@ class App extends Component {
     });
   }
 
-  // handleAddTemplate = (template, cb) => {
-  //   this.state.templates.unshift(template);
-  //   this.setState({ templates: this.state.templates }, cb);
-  // };
   updateUserId = (userId) => {
-    console.log(userId);
     this.setState({ userId: userId });
   };
 
@@ -62,25 +57,21 @@ class App extends Component {
     this.setState({ templates: this.state.templates });
   };
 
-  // handleUpdateTemplates = (templates) => {
-  //   this.state.templates = templates;
-  //   this.setState({ templates: this.state.templates });
-  // };
-
   handleUpdateTemplates = () => {
-    TemplateApiService.getAllTemplates(config.USER_ID).then((templates) => {
+    TemplateApiService.getAllTemplates(this.state.userId).then((templates) => {
       this.setState({ templates: templates });
     });
   };
 
   handleUpdateGrids = () => {
-    GridApiService.getAllGrids(config.USER_ID).then((data) => {
+    GridApiService.getAllGrids(this.state.userId).then((data) => {
       data.map((data) => {
         data.x = data.x.split(',').map(Number);
         data.y = data.y.split(',').map(Number);
         data.x_partial = data.x_partial.split(',').map(Number);
         data.y_partial = data.y_partial.split(',').map(Number);
         data.direction = data.direction.split(',').map(Number);
+        return data;
       });
       this.setState({ data: data });
     });
@@ -111,6 +102,7 @@ class App extends Component {
     const value = {
       templates: this.state.templates,
       data: this.state.data,
+      id: this.state.userId,
       handleAddData: this.handleAddData,
       handleAddTemplate: this.handleAddTemplate,
       handleDeleteData: this.handleDeleteData,

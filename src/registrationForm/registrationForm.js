@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import TokenService from '../services/token-service';
 import { Button, Input, Required } from '../utils/Utils';
 import AuthApiService from '../services/auth-api-service';
+import GridContext from '../GridContext';
 
 export default class RegistrationForm extends Component {
   state = { error: null };
+  static contextType = GridContext;
 
   handleSubmit = (ev) => {
     ev.preventDefault();
@@ -23,10 +25,9 @@ export default class RegistrationForm extends Component {
         AuthApiService.postLogin({
           user_name: user_name.value,
           password: password.value,
-        });
-        console.log('Got to next then');
-        // user_name.value = '';
-        // password.value = '';
+        })
+          .then(() => this.context.handleUpdateTemplates())
+          .then(() => this.context.handleUpdateGrids());
         this.props.history.replace('/home');
       })
       .catch((res) => {

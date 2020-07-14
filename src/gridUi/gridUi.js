@@ -68,9 +68,7 @@ class GridUi extends Component {
   static contextType = GridContext;
 
   render() {
-    // const value = {
-    //   handleUpdateGrid: this.handleUpdateGrid,
-    // };
+
     let buttons;
     if (this.state.ready === true) {
       buttons = (

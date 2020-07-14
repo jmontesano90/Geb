@@ -1,5 +1,4 @@
 export default {
-  API_ENDPOINT: 'http://localhost:8000/api',
+  API_ENDPOINT: 'https://stormy-ridge-13186.herokuapp.com',
   TOKEN_KEY: 'geb-client-auth-token',
-  USER_ID: '2',
 };

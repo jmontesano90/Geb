@@ -188,7 +188,6 @@ class gridGenerator extends Component {
     event.preventDefault();
     this.props.handleUpdateGrid(this.state.gridInformation);
   }
-  //rend;
 
   forceUpdateHandler = () => {
     this.forceUpdate();

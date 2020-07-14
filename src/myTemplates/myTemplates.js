@@ -16,7 +16,6 @@ class myTemplates extends Component {
   }
 
   render() {
-    //const { error } = this.context;
     return (
       <section>
         <main role='main'>
@@ -25,11 +24,6 @@ class myTemplates extends Component {
             <h2>My Templates</h2>
           </header>
           <Section list className='OutlineListPage'>
-            {/* {error ? (
-              <p className='red'>There was an error, try again</p>
-            ) : (
-              this.renderOutlines()
-            )} */}
             {this.context.templates.map((template, index) => (
               <TemplateListItem template={template} key={index} id={index} />
             ))}

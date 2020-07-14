@@ -1,9 +1,7 @@
 import TokenService from './token-service';
 import config from '../config';
-import { min } from 'date-fns';
 
 const TemplateApiService = {
-
   getTemplate(templateId) {
     return fetch(`${config.API_ENDPOINT}/templates/${templateId}`, {
       headers: { authorization: `basic ${TokenService.getAuthToken()}` },

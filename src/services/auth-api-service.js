@@ -10,15 +10,6 @@ const AuthApiService = {
     );
   },
 
-  // getUserId(userName) {
-  //   let userId = null;
-  //   await fetch(`${config.API_ENDPOINT}/auth/${userName}`, {
-  //     headers: { authorization: `basic ${TokenService.getAuthToken()}` },
-  //   }).then((res) =>
-  //     res.ok ? res.json().then((resJson) => userId = resJson.userId) : return userId;
-
-  // },
-
   postLogin({ user_name, password }) {
     return fetch(`${config.API_ENDPOINT}/auth/login`, {
       method: 'POST',

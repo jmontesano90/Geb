@@ -8,14 +8,7 @@ class SplashPage extends Component {
     return (
       <section id='outerSection'>
         <main role='main'>
-          <header
-            role='banner'
-            // style={{
-            //   width: '100%',
-            //   height: '100%',
-            //   backgroundImage: `url(https://imgur.com/F4KxSGu.jpg)`,
-            // }}
-          >
+          <header role='banner'>
             <h1>Geb</h1>
             <h2>Grid Randomizer</h2>
           </header>

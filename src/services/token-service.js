@@ -1,4 +1,5 @@
 import config from '../config';
+import jwt_decode from 'jwt-decode';
 
 const TokenService = {
   saveAuthToken(token) {
@@ -15,6 +16,9 @@ const TokenService = {
   },
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`);
+  },
+  getPayload() {
+    return jwt_decode(window.localStorage.getItem(config.TOKEN_KEY));
   },
 };
 
