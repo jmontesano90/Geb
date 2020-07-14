@@ -38,6 +38,7 @@ export default class LoginForm extends Component {
           .then((data) => {
             this.context.updateUserId(data.id);
           })
+          .then(() => console.log('supposedly updated id'))
           .then(() => this.context.handleUpdateTemplates())
           .then(() => this.context.handleUpdateGrids());
         user_name.value = '';

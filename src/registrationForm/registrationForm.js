@@ -25,12 +25,20 @@ export default class RegistrationForm extends Component {
         AuthApiService.postLogin({
           user_name: user_name.value,
           password: password.value,
-        })
-          .then(() => this.context.handleUpdateTemplates())
-          .then(() => this.context.handleUpdateGrids());
-        if (this.context.id === 0) {
-          this.props.history.replace('/');
-        } else this.props.history.replace('/home');
+        }).then((res) => {
+          TokenService.saveAuthToken(res.authToken);
+          AuthApiService.getUserId(user_name.value)
+            .then((data) => {
+              this.context.updateUserId(data.id);
+            })
+            .then(() => console.log('supposedly updated id'))
+            .then(() => this.context.handleUpdateTemplates())
+            .then(() => this.context.handleUpdateGrids());
+          user_name.value = '';
+          password.value = '';
+
+          this.props.history.replace('/home');
+        });
       })
       .catch((res) => {
         this.setState({ error: res.error });
