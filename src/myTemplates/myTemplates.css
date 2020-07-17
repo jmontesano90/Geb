@@ -1,39 +1,23 @@
-/* * {
-  box-sizing: border-box;
+.OutlineListPage {
+  padding: 5px 15px 20px 15px;
+  background-color: rgb(246, 240, 226);
+  color: rgb(45, 45, 47);
+  border: 2px solid rgb(1, 82, 112);
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: inset 0px 1px 0px 0px #1c1b18;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
-  color: #444;
-  text-align: center;
-  line-height: 1.5;
+@media screen and (min-width: 600px) {
+  .OutlineListPage {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
 }
 
-footer {
-  padding: 1% 0;
-  background-color: #aaa;
+@media screen and (min-width: 1000px) {
+  .OutlineListPage {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
 }
-
-header {
-  padding: 45px 15px;
-}
-
-section {
-  min-height: 200px;
-  padding: 30px 15px;
-  background-color: #bbb;
-}
-
-section:nth-child(even) {
-  background-color: #ddd;
-}
-
-p {
-  margin: 0 auto;
-  max-width: 650px;
-}
-
-p + p {
-  margin-top: 15px;
-} */

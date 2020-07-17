@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import GridContext from '../../GridContext';
 import GridApiService from '../../services/grid-api-service';
+import './button.css';
 
 class gridConfigurationButton extends Component {
   static contextType = GridContext;
@@ -24,7 +25,7 @@ class gridConfigurationButton extends Component {
   render() {
     gridConfigurationButton.contextType = GridContext;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className='saveButton'>
         <button type='submit'>Save this sampling event?</button>
       </form>
     );

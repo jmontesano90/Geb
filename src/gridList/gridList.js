@@ -28,13 +28,16 @@ class gridList extends Component {
       this.props.history.push('/myTemplates');
     }
     let grids = selectedData.map((data, index) => (
-      <div className='gridDividers'>
+      <div className='gridDividers' key={index}>
         <Link
           to={{
             pathname: `/template/${data.template_id}/grids/${data.id}`,
             state: {
               template: this.props.location.state.template,
               data: data,
+            },
+            key: {
+              key: index,
             },
           }}
         >
@@ -44,7 +47,7 @@ class gridList extends Component {
     ));
     return (
       <section>
-        <main role='main'>
+        <main role='main' className='list'>
           <header role='banner'>
             <h1>Geb</h1>
             <h2>{this.props.location.state.template.name.value}</h2>

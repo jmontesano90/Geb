@@ -1,5 +1,5 @@
 import idGeneration from './idGeneration';
-
+//this function generates the transects based on user input
 export default function transectGeneration(info, templateId) {
   let transectD = [];
   let rangeOfN = [];

@@ -19,3 +19,17 @@ button {
   color: rgb(255, 0, 0);
   padding: 10px;
 }
+
+@media screen and (min-width: 600px) {
+  .gridGenerator {
+    margin-left: 30%;
+    margin-right: 30%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .gridGenerator {
+    margin-left: 35%;
+    margin-right: 35%;
+  }
+}

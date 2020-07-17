@@ -136,8 +136,8 @@ class listTemplate extends Component {
                 info={this.state.gridInformation}
               ></Grid>
             }
-            {buttons}
           </form>
+          {buttons}
         </main>
         <Footer />
       </section>
