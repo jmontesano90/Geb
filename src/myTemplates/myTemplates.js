@@ -16,22 +16,26 @@ class myTemplates extends Component {
   }
 
   render() {
-    return (
-      <section>
-        <main role='main'>
-          <header role='banner'>
-            <h1>Geb</h1>
-            <h2>My Templates</h2>
-          </header>
-          <Section list className='OutlineListPage'>
-            {this.context.templates.map((template, index) => (
-              <TemplateListItem template={template} key={index} id={index} />
-            ))}
-          </Section>
-        </main>
-        <Footer />
-      </section>
-    );
+    let myTemplates;
+    if (this.context.templates) {
+      myTemplates = (
+        <section>
+          <main role='main'>
+            <header role='banner'>
+              <h1>Geb</h1>
+              <h2>My Templates</h2>
+            </header>
+            <Section list className='OutlineListPage'>
+              {this.context.templates.map((template, index) => (
+                <TemplateListItem template={template} key={index} id={index} />
+              ))}
+            </Section>
+          </main>
+          <Footer />
+        </section>
+      );
+    }
+    return <div>{myTemplates}</div>;
   }
 }
 

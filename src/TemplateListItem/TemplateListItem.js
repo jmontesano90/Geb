@@ -21,66 +21,73 @@ export default class TemplateListItem extends Component {
   };
   render() {
     const { template } = this.props;
-    return (
-      <div className='templateListItem'>
-        <header className='TemplateListItem__header'>
-          <input
-            type='image'
-            src='https://imgur.com/FyZgoKZ.png'
-            alt='initialzie button'
-            className='deleteButton'
-            width='35'
-            height='35'
-            onClick={this.handleClickDelete}
-          />
-          <Link
-            to={{
-              pathname: `/template/${this.props.id}`,
-              state: {
-                template: template,
-              },
-            }}
-          >
-            <h2 className='TemplateListItem__heading'>{template.name}</h2>
-          </Link>
-          <Collapsible trigger='View template details' className='collapsible'>
-            <div className='valueContainer'>
-              <span>X value: </span>
-              <span className='values'>{template.x}</span>
-            </div>
-            <div className='valueContainer'>
-              <span>Y value: </span>
-              <span className='values'>{template.y}</span>
-            </div>
-            <div className='valueContainer'>
-              <span>Transect count: </span>
-              <span className='values'>{template.transect_count}</span>
-            </div>
-            <div className='valueContainer'>
-              <span>
-                Minimum distance between transects:{' '}
-                <span className='values'>{template.minimum}</span>
-              </span>
-            </div>
-            <div className='valueContainer'>
-              <span>
-                Partial transect count:{' '}
-                <span className='values'>
-                  {template.partial_transect_count}
+    let templateList;
+    if (this.props.template) {
+      templateList = (
+        <div className='templateListItem'>
+          <header className='TemplateListItem__header'>
+            <input
+              type='image'
+              src='https://imgur.com/FyZgoKZ.png'
+              alt='initialzie button'
+              className='deleteButton'
+              width='35'
+              height='35'
+              onClick={this.handleClickDelete}
+            />
+            <Link
+              to={{
+                pathname: `/template/${this.props.id}`,
+                state: {
+                  template: template,
+                },
+              }}
+            >
+              <h2 className='TemplateListItem__heading'>{template.name}</h2>
+            </Link>
+            <Collapsible
+              trigger='View template details'
+              className='collapsible'
+            >
+              <div className='valueContainer'>
+                <span>X value: </span>
+                <span className='values'>{template.x}</span>
+              </div>
+              <div className='valueContainer'>
+                <span>Y value: </span>
+                <span className='values'>{template.y}</span>
+              </div>
+              <div className='valueContainer'>
+                <span>Transect count: </span>
+                <span className='values'>{template.transect_count}</span>
+              </div>
+              <div className='valueContainer'>
+                <span>
+                  Minimum distance between transects:{' '}
+                  <span className='values'>{template.minimum}</span>
                 </span>
-              </span>
-            </div>
-            <div className='valueContainer'>
-              <span>
-                Partial transect length:{' '}
-                <span className='values'>
-                  {template.partial_transect_length}
+              </div>
+              <div className='valueContainer'>
+                <span>
+                  Partial transect count:{' '}
+                  <span className='values'>
+                    {template.partial_transect_count}
+                  </span>
                 </span>
-              </span>
-            </div>
-          </Collapsible>
-        </header>
-      </div>
-    );
+              </div>
+              <div className='valueContainer'>
+                <span>
+                  Partial transect length:{' '}
+                  <span className='values'>
+                    {template.partial_transect_length}
+                  </span>
+                </span>
+              </div>
+            </Collapsible>
+          </header>
+        </div>
+      );
+    }
+    return <div>{templateList}</div>;
   }
 }
