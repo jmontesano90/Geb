@@ -70,6 +70,20 @@ export default class LoginForm extends Component {
           </div>
           <Button type='submit'>Login</Button>
         </form>
+        <section>
+          <header>
+            <h3>Start Sampling Now</h3>
+            <p>
+              Want to sample and don't want to make an account? Use the
+              following log in details:
+            </p>
+            <span>Full name:</span> <span>TestUser</span>
+            <br></br>
+            <span>User name:</span> <span>TestUser</span>
+            <br></br>
+            <span>Password:</span> <span>TestUser10!</span>
+          </header>
+        </section>
         <Footer />
       </div>
     );

@@ -64,6 +64,10 @@ class SplashPage extends Component {
           <section>
             <header>
               <h3>Start Sampling Now</h3>
+              <p>
+                Want to try Geb without signing up? Go to the log in page and
+                use the pre-existing credentials!
+              </p>
             </header>
             <RegistrationForm
               id='register'
